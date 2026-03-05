@@ -211,9 +211,9 @@ Make sure to verify that the new tags are included in the asset definitions.
         # Check cluster_id tag on all assets
         for key in ["a", "b", "c"]:
             tags = _parse_tags(assets[key]["tags"])
-            assert (
-                tags["cluster_id"] == "api.example.com"
-            ), f"Asset '{key}' cluster_id tag: {tags.get('cluster_id')}"
+            assert tags["cluster_id"] == "api.example.com", (
+                f"Asset '{key}' cluster_id tag: {tags.get('cluster_id')}"
+            )
 
         # Check specific tags
         assert _parse_tags(assets["a"]["tags"])["domain"] == "sales"
@@ -222,9 +222,9 @@ Make sure to verify that the new tags are included in the asset definitions.
 
         # 2. Verify defs.yaml uses {{ env.TOKEN }}
         defs_yamls = list(empty_project_path.rglob("defs.yaml"))
-        assert any(
-            "{{ env.TOKEN }}" in f.read_text() for f in defs_yamls
-        ), "No defs.yaml contains {{ env.TOKEN }}"
+        assert any("{{ env.TOKEN }}" in f.read_text() for f in defs_yamls), (
+            "No defs.yaml contains {{ env.TOKEN }}"
+        )
 
         # 3. Verify ResolvedAssetSpec is used within the component definition
         component_files_using_resolved = [
@@ -232,9 +232,9 @@ Make sure to verify that the new tags are included in the asset definitions.
             for f in empty_project_path.rglob("*.py")
             if "ApiAssetsComponent" in (text := f.read_text()) and "ResolvedAssetSpec" in text
         ]
-        assert (
-            component_files_using_resolved
-        ), "No component definition file found that uses ResolvedAssetSpec"
+        assert component_files_using_resolved, (
+            "No component definition file found that uses ResolvedAssetSpec"
+        )
 
         baseline_manager.assert_improved(result)
     finally:
