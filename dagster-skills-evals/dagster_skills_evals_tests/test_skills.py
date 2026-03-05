@@ -217,9 +217,9 @@ _LINK_CASES = _collect_link_cases()
     ids=[f"{c[0]} -> {c[1]}" for c in _LINK_CASES],
 )
 def test_skill_reference_links_valid(label: str, raw_link: str, resolved: Path) -> None:
-    assert (
-        resolved.exists()
-    ), f"{label}: link '{raw_link}' resolves to {resolved} which does not exist"
+    assert resolved.exists(), (
+        f"{label}: link '{raw_link}' resolves to {resolved} which does not exist"
+    )
 
 
 def _compute_reachable_files() -> dict[str, set[Path]]:

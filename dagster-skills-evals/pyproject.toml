@@ -82,6 +82,7 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]  # Allow unused imports in __init__.py files
 "**/cli/*.py" = ["B008"]  # typer.Argument/Option in defaults is the intended pattern
+"dagster_skills_evals_tests/**/*.py" = ["PLC0415"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["dagster_skills_evals"]
