@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Version bumping script for Dagster Skills monorepo.
+"""Version bumping script for Dagster Skills monorepo.
 
 Updates version in all plugin.json files and CHANGELOG.md.
 """
@@ -14,8 +13,7 @@ from pathlib import Path
 
 
 def validate_version(version: str) -> bool:
-    """
-    Validate semantic versioning format (X.Y.Z or X.Y.Z-prerelease).
+    """Validate semantic versioning format (X.Y.Z or X.Y.Z-prerelease).
 
     Examples:
         - Valid: 0.0.1, 1.0.0, 2.1.3, 1.0.0-beta, 1.0.0-alpha.1
@@ -26,8 +24,7 @@ def validate_version(version: str) -> bool:
 
 
 def update_plugin_version(plugin_path: Path, version: str) -> None:
-    """
-    Update version field in a plugin.json file.
+    """Update version field in a plugin.json file.
 
     Preserves JSON formatting (2-space indent, trailing newline).
     """
@@ -42,8 +39,7 @@ def update_plugin_version(plugin_path: Path, version: str) -> None:
 
 
 def update_changelog(repo_root: Path, version: str) -> None:
-    """
-    Update CHANGELOG.md with new version.
+    """Update CHANGELOG.md with new version.
 
     - Converts [Unreleased] section to [version] with today's date
     - Adds new empty [Unreleased] section at top

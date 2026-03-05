@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Extract a specific version section from CHANGELOG.md.
+"""Extract a specific version section from CHANGELOG.md.
 
 Used by GitHub Actions to generate release notes.
 """
@@ -12,8 +11,7 @@ from pathlib import Path
 
 
 def extract_version_section(changelog_path: Path, version: str) -> str:
-    """
-    Extract the changelog section for a specific version.
+    """Extract the changelog section for a specific version.
 
     Returns the content between the version header and the next version header,
     with empty category headers removed.
