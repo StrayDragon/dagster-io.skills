@@ -1,8 +1,7 @@
 ---
-description: Asset patterns including dependencies, metadata, partitions, and multi-asset definitions.
+title: Asset Patterns
 triggers:
-  - "asset definition or pattern"
-  - "dependency, metadata, partition, multi-asset"
+  - "defining assets, dependencies, metadata, partitions, or multi-asset definitions"
 ---
 
 # Asset Patterns Reference

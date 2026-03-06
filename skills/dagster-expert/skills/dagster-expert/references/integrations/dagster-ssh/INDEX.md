@@ -1,7 +1,7 @@
 ---
-description: Integration with SSH for remote command execution.
+title: dagster-ssh
 triggers:
-  - "ssh, remote execution"
+  - "remote command execution via SSH"
 ---
 
 # dagster-ssh

@@ -1,7 +1,7 @@
 ---
-description: Integration with Pandera for DataFrame schema validation.
+title: dagster-pandera
 triggers:
-  - "pandera, schema validation"
+  - "DataFrame schema validation with Pandera"
 ---
 
 # dagster-pandera

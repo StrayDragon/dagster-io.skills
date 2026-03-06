@@ -1,8 +1,7 @@
 ---
-description: "dg api deployment list: list deployments from Dagster Plus."
+title: dg api deployment list
 triggers:
-  - "list deployments, show deployments, all deployments"
-  - "deployment inventory, browse deployments"
+  - "listing deployments in Dagster Plus"
 ---
 
 ```bash

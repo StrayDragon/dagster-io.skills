@@ -1,7 +1,7 @@
 ---
-description: Integration with Looker for BI dashboard assets.
+title: dagster-looker
 triggers:
-  - "looker, BI dashboard"
+  - "Looker BI dashboard assets"
 ---
 
 # dagster-looker

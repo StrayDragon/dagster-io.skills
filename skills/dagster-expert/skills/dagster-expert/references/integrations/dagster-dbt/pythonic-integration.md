@@ -1,8 +1,7 @@
 ---
-description: "@dbt_assets decorator for programmatic dbt integration with maximum flexibility."
+title: "dbt: Pythonic Integration"
 triggers:
-  - "dbt_assets decorator, pythonic dbt"
-  - "programmatic dbt integration"
+  - "using @dbt_assets decorator for programmatic dbt integration"
 ---
 
 # Pythonic Integration

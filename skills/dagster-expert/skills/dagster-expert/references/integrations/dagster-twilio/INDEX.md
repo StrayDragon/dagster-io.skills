@@ -1,7 +1,7 @@
 ---
-description: Integration with Twilio for SMS and communication.
+title: dagster-twilio
 triggers:
-  - "twilio, SMS, communication"
+  - "SMS and communication with Twilio"
 ---
 
 # dagster-twilio

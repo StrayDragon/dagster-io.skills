@@ -114,7 +114,7 @@ def test_get_run_failure_logs(baseline_manager: BaselineManager):
         result = execute_prompt(prompt, tmp_dir)
 
         # should recommend the correct command from the reference docs
-        assert f"dg api log get {run_id}" in result.conversation_summary()
+        assert f"dg api run get-events {run_id}" in result.conversation_summary()
         assert "--level ERROR" in result.conversation_summary()
 
         baseline_manager.assert_improved(result)

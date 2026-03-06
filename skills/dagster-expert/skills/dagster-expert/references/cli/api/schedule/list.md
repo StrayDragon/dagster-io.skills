@@ -1,8 +1,7 @@
 ---
-description: "dg api schedule list: list schedules from Dagster Plus."
+title: dg api schedule list
 triggers:
-  - "list schedules, show schedules, all schedules"
-  - "schedule inventory, browse schedules"
+  - "listing schedules in Dagster Plus"
 ---
 
 ```bash

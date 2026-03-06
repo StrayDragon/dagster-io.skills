@@ -1,7 +1,7 @@
 ---
-description: Integration with PostgreSQL for database storage backends.
+title: dagster-postgres
 triggers:
-  - "postgres, postgresql, database backend"
+  - "PostgreSQL as a Dagster storage backend"
 ---
 
 # dagster-postgres

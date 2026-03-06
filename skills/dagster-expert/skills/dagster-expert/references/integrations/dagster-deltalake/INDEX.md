@@ -1,7 +1,7 @@
 ---
-description: Integration with Delta Lake for lakehouse storage (community-maintained).
+title: dagster-deltalake
 triggers:
-  - "delta lake, lakehouse"
+  - "lakehouse storage with Delta Lake"
 ---
 
 # dagster-deltalake

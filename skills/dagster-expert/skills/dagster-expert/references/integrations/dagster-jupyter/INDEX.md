@@ -1,7 +1,7 @@
 ---
-description: Integration with Jupyter for notebook-based assets.
+title: dagster-jupyter
 triggers:
-  - "jupyter, notebook asset"
+  - "notebook-based assets with Jupyter"
 ---
 
 # dagster-jupyter

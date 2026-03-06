@@ -1,8 +1,7 @@
 ---
-description: "dg api deployment get: retrieve details for a specific deployment from Dagster Plus."
+title: dg api deployment get
 triggers:
-  - "deployment details, get deployment, deployment info"
-  - "deployment status, deployment configuration"
+  - "details about a specific deployment"
 ---
 
 ```bash

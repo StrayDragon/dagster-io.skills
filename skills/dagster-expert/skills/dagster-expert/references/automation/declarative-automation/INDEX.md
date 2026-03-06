@@ -1,9 +1,8 @@
 ---
-description: Declarative automation using AutomationCondition for asset-centric condition-based orchestration.
+title: Declarative Automation
 type: index
 triggers:
-  - "declarative automation, AutomationCondition, conditions"
-  - "eager, on_cron, on_missing, complex triggers"
+  - "asset-centric condition-based automation using AutomationCondition"
 ---
 
 # Declarative Automation Reference
@@ -57,9 +56,9 @@ All three main conditions can be customized:
 
 <!-- BEGIN GENERATED INDEX -->
 
-- [advanced](./advanced.md) — Advanced declarative automation: status vs events, run grouping, and filtering. (advanced declarative automation; status vs events, run grouping, filtering)
-- [core-concepts](./core-concepts.md) — Core declarative automation concepts: eager(), on_cron(), and on_missing() conditions. (eager, on_cron, on_missing; declarative automation basics, AutomationCondition)
-- [customization](./customization.md) — Customizing declarative automation conditions with without(), replace(), allow(), and ignore(). (customize automation condition; without, replace, allow, ignore condition)
-- [operands](./operands.md) — Declarative automation operands — base condition building blocks like missing() and newly_updated(). (automation operand, missing, newly_updated; base condition building block)
-- [operators](./operators.md) — Declarative automation operators for combining and transforming conditions (since, any_deps_match). (automation operator, since, any_deps_match; combining conditions, boolean operators)
+- [Advanced](./advanced.md) — status vs events, run grouping, or filtering in declarative automation
+- [Core Concepts](./core-concepts.md) — using eager(), on_cron(), or on_missing() conditions
+- [Customization](./customization.md) — customizing conditions with without(), replace(), allow(), or ignore()
+- [Operands](./operands.md) — base condition building blocks like missing() or newly_updated()
+- [Operators](./operators.md) — combining conditions using since, any_deps_match, or boolean operators
 <!-- END GENERATED INDEX -->

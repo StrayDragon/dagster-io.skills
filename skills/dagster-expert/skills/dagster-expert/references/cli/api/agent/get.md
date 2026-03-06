@@ -1,8 +1,7 @@
 ---
-description: "dg api agent get: retrieve details for a specific agent from Dagster Plus."
+title: dg api agent get
 triggers:
-  - "agent details, get agent, agent info"
-  - "agent status, agent configuration"
+  - "details about a specific Dagster Plus agent"
 ---
 
 ```bash

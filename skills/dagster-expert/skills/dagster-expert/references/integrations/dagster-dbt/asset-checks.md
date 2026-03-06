@@ -1,8 +1,7 @@
 ---
-description: How dbt tests map to Dagster asset checks for data quality validation.
+title: "dbt: Asset Checks"
 triggers:
-  - "dbt test, asset check"
-  - "dbt data quality, test mapping"
+  - "how dbt tests map to Dagster asset checks"
 ---
 
 # Asset Checks

@@ -1,8 +1,7 @@
 ---
-description: Asset sensors that trigger on asset materialization events.
+title: Asset Sensors
 triggers:
-  - "asset sensor, materialization trigger"
-  - "react to asset update"
+  - "triggering on asset materialization events"
 ---
 
 # Asset Sensors

@@ -1,7 +1,7 @@
 ---
-description: Integration with Great Expectations for data validation and testing.
+title: dagster-great-expectations
 triggers:
-  - "great expectations, data validation"
+  - "data validation and testing with Great Expectations"
 ---
 
 # dagster-great-expectations

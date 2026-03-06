@@ -1,8 +1,7 @@
 ---
-description: "dg api asset list: list assets with pagination from Dagster Plus."
+title: dg api asset list
 triggers:
-  - "list assets, show assets, all assets"
-  - "asset inventory, browse assets"
+  - "querying which assets exist in a deployment"
 ---
 
 ```bash

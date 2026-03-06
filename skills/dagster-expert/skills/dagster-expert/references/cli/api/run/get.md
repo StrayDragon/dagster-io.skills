@@ -1,8 +1,7 @@
 ---
-description: "dg api run get: retrieve details for a specific run from Dagster Plus."
+title: dg api run get
 triggers:
-  - "run details, get run, run info"
-  - "run status, run metadata"
+  - "details about a specific run"
 ---
 
 ```bash

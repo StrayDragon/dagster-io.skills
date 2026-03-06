@@ -1,8 +1,7 @@
 ---
-description: Basic sensor patterns for file watching and custom polling with cursors.
+title: Basic Sensors
 triggers:
-  - "file sensor, custom polling, cursor"
-  - "basic sensor, event-driven trigger"
+  - "event-driven automation with file watching or custom polling"
 ---
 
 # Basic Sensors

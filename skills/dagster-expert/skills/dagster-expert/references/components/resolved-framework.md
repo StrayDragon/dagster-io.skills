@@ -1,8 +1,7 @@
 ---
-description: Resolved framework for auto-generating YAML schemas from Python classes using Resolver, Model, and Resolvable.
+title: Resolved Framework
 triggers:
-  - "Custom component, component YAML schema"
-  - "ResolvedAssetKey, ResolvedAssetSpec"
+  - "defining custom YAML schema types using Resolver, Model, or Resolvable"
 ---
 
 # Resolved Framework

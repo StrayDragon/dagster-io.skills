@@ -1,7 +1,7 @@
 ---
-description: Integration with Prometheus for metrics collection.
+title: dagster-prometheus
 triggers:
-  - "prometheus, metrics"
+  - "metrics collection with Prometheus"
 ---
 
 # dagster-prometheus

@@ -1,9 +1,7 @@
 ---
-description: Managing state-backed components in production workflows — strategies, configuration, and CI/CD.
+title: Using State-Backed Components
 triggers:
-  - "state-backed component, defs_state, defs state"
-  - "refresh-defs-state, dg utils refresh-defs-state"
-  - "state management, LOCAL_FILESYSTEM, VERSIONED_STATE_STORAGE"
+  - "managing state-backed components in production, CI/CD, or refreshing state"
 ---
 
 # Using State-Backed Components

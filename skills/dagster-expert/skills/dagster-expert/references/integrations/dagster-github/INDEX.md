@@ -1,7 +1,7 @@
 ---
-description: Integration with GitHub for repository event handling.
+title: dagster-github
 triggers:
-  - "github, repository events"
+  - "GitHub repository event handling from Dagster"
 ---
 
 # dagster-github

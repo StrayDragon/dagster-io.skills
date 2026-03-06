@@ -1,7 +1,7 @@
 ---
-description: Integration with DataHub for metadata management and data cataloging.
+title: dagster-datahub
 triggers:
-  - "datahub, metadata, data catalog"
+  - "metadata management and data cataloging with DataHub"
 ---
 
 # dagster-datahub

@@ -1,9 +1,8 @@
 ---
-description: Integration with dbt Core and dbt Cloud for model-level orchestration.
+title: dagster-dbt
 type: index
 triggers:
-  - "dbt, dbt Core, dbt Cloud"
-  - "dagster-dbt, dbt model, dbt project"
+  - "integrating dbt Core or dbt Cloud with Dagster"
 ---
 
 # dagster-dbt Integration Reference
@@ -27,10 +26,10 @@ Depending on the user's request, choose the appropriate reference file:
 
 <!-- BEGIN GENERATED INDEX -->
 
-- [asset-checks](./asset-checks.md) — How dbt tests map to Dagster asset checks for data quality validation. (dbt test, asset check; dbt data quality, test mapping)
-- [component-based-integration](./component-based-integration.md) — DbtProjectComponent configuration and customization for dbt Core projects in Dagster. (DbtProjectComponent configuration, customize dbt component; dbt component settings, dbt translation)
-- [dbt-cloud](./dbt-cloud.md) — Integrating dbt Cloud projects into Dagster for cloud-based dbt orchestration. (dbt Cloud, cloud-based dbt; dbt Cloud integration)
-- [dependencies](./dependencies.md) — How Dagster parses dbt project dependencies and patterns for defining additional upstream dependencies. (dbt dependency, upstream asset; dbt source, dependency parsing)
-- [pythonic-integration](./pythonic-integration.md) — @dbt_assets decorator for programmatic dbt integration with maximum flexibility. (dbt_assets decorator, pythonic dbt; programmatic dbt integration)
-- [scaffolding](./scaffolding.md) — Step-by-step guide for scaffolding a new dbt component in a Dagster project. (scaffold dbt, create dbt component; new dbt project in Dagster, set up dbt)
+- [dbt: Asset Checks](./asset-checks.md) — how dbt tests map to Dagster asset checks
+- [dbt: Component-Based Integration](./component-based-integration.md) — configuring or customizing DbtProjectComponent
+- [dbt: Cloud Integration](./dbt-cloud.md) — integrating dbt Cloud with Dagster
+- [dbt: Dependencies](./dependencies.md) — understanding or defining upstream dependencies for dbt models
+- [dbt: Pythonic Integration](./pythonic-integration.md) — using @dbt_assets decorator for programmatic dbt integration
+- [dbt: Scaffolding](./scaffolding.md) — scaffolding a new dbt component in a Dagster project
 <!-- END GENERATED INDEX -->

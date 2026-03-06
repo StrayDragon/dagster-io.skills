@@ -1,9 +1,7 @@
 ---
-description: "dg check command: validate project configuration and definitions."
+title: dg check
 triggers:
-  - "validate yaml, validate definitions, check, verify"
-  - "validate project config"
-  - "dg check"
+  - "validating project configuration or definitions"
 ---
 
 ## dg check defs

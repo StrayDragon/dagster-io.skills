@@ -1,7 +1,7 @@
 ---
-description: Integration with Omni for analytics and BI.
+title: dagster-omni
 triggers:
-  - "omni, analytics"
+  - "analytics and BI with Omni"
 ---
 
 # dagster-omni

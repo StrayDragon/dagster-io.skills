@@ -1,8 +1,7 @@
 ---
-description: Declarative automation operands — base condition building blocks like missing() and newly_updated().
+title: Operands
 triggers:
-  - "automation operand, missing, newly_updated"
-  - "base condition building block"
+  - "base condition building blocks like missing() or newly_updated()"
 ---
 
 # Declarative Automation: Operands

@@ -1,7 +1,7 @@
 ---
-description: Integration with Docker for containerized execution.
+title: dagster-docker
 triggers:
-  - "docker, container execution"
+  - "containerized execution with Docker"
 ---
 
 # dagster-docker

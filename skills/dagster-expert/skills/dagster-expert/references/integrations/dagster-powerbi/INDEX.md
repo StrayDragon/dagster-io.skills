@@ -1,7 +1,7 @@
 ---
-description: Integration with Power BI for BI dashboard assets.
+title: dagster-powerbi
 triggers:
-  - "power bi, powerbi, BI dashboard"
+  - "Power BI dashboard assets"
 ---
 
 # dagster-powerbi

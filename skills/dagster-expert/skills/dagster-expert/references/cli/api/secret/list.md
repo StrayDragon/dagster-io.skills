@@ -1,8 +1,7 @@
 ---
-description: "dg api secret list: list secrets from Dagster Plus."
+title: dg api secret list
 triggers:
-  - "list secrets, show secrets, all secrets"
-  - "secret inventory, browse secrets"
+  - "listing secrets in Dagster Plus"
 ---
 
 ```bash

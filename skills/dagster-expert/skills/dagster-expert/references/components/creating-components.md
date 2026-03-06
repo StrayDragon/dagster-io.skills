@@ -1,7 +1,7 @@
 ---
-description: Guide for creating custom Dagster components.
+title: Creating Components
 triggers:
-  - "create component, new component, custom component"
+  - "building a new custom component from scratch"
 ---
 
 # Creating Custom Components

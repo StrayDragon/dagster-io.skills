@@ -1,7 +1,7 @@
 ---
-description: Subclassing existing Dagster components for customization.
+title: Subclassing Components
 triggers:
-  - "subclass component, extend component, component inheritance"
+  - "extending an existing component via subclassing"
 ---
 
 TODO

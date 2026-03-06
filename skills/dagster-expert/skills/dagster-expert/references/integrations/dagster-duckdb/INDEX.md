@@ -1,7 +1,7 @@
 ---
-description: Integration with DuckDB for in-process analytical queries.
+title: dagster-duckdb
 triggers:
-  - "duckdb, analytical database"
+  - "in-process analytical queries with DuckDB"
 ---
 
 # dagster-duckdb

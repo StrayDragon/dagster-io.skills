@@ -1,7 +1,7 @@
 ---
-description: Integration with AWS services (S3, ECS, Lambda, etc.).
+title: dagster-aws
 triggers:
-  - "aws, s3, ecs, lambda, amazon"
+  - "AWS services (S3, ECS, Lambda) from Dagster"
 ---
 
 # dagster-aws

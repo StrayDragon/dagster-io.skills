@@ -1,8 +1,7 @@
 ---
-description: Schedule-based automation using cron expressions and timezones.
+title: Schedules
 triggers:
-  - "schedule, cron, time-based automation"
-  - "recurring execution, periodic run"
+  - "time-based automation with cron expressions"
 ---
 
 # Schedules

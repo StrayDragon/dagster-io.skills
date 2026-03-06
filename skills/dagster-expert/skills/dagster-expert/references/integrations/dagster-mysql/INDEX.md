@@ -1,7 +1,7 @@
 ---
-description: Integration with MySQL for database storage backends.
+title: dagster-mysql
 triggers:
-  - "mysql, database backend"
+  - "MySQL as a Dagster storage backend"
 ---
 
 # dagster-mysql

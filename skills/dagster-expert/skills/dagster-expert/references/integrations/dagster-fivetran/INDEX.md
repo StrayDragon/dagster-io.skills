@@ -1,7 +1,7 @@
 ---
-description: Integration with Fivetran for managed EL (Extract-Load) connectors.
+title: dagster-fivetran
 triggers:
-  - "fivetran, managed connectors, extract-load"
+  - "managed extract-load connectors with Fivetran"
 ---
 
 # dagster-fivetran

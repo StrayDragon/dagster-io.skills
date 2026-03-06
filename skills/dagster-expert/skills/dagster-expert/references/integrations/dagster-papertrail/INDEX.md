@@ -1,7 +1,7 @@
 ---
-description: Integration with Papertrail for log management.
+title: dagster-papertrail
 triggers:
-  - "papertrail, log management"
+  - "log management with Papertrail"
 ---
 
 # dagster-papertrail

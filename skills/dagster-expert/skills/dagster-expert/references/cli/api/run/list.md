@@ -1,8 +1,7 @@
 ---
-description: "dg api run list: list runs with filtering and pagination from Dagster Plus."
+title: dg api run list
 triggers:
-  - "list runs, show runs, all runs"
-  - "run history, browse runs, recent runs"
+  - "listing or filtering runs"
 ---
 
 ```bash

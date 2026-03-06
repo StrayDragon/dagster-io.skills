@@ -1,8 +1,7 @@
 ---
-description: Designing component integrations for external services and tools.
+title: Designing Component Integrations
 triggers:
-  - "component integration, external service, modeling concepts"
-  - "creating component integrations"
+  - "designing a component that wraps an external service or tool"
 ---
 
 # Designing Component Integrations

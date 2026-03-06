@@ -1,8 +1,7 @@
 ---
-description: "dg api asset get-evaluations: retrieve automation condition evaluation records for an asset from Dagster Plus."
+title: dg api asset get-evaluations
 triggers:
-  - "declarative automation, automation condition history"
-  - "declarative automation, automation condition debugging"
+  - "automation condition evaluation history for an asset"
 ---
 
 ```bash

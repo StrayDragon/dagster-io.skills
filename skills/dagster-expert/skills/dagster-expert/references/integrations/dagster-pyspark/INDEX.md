@@ -1,7 +1,7 @@
 ---
-description: Integration with PySpark for distributed data processing.
+title: dagster-pyspark
 triggers:
-  - "pyspark, spark, distributed processing"
+  - "distributed data processing with PySpark"
 ---
 
 # dagster-pyspark

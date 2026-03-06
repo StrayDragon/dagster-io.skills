@@ -1,7 +1,7 @@
 ---
-description: Integration with Hightouch for reverse ETL and data activation.
+title: dagster-hightouch
 triggers:
-  - "hightouch, reverse ETL, data activation"
+  - "reverse ETL and data activation with Hightouch"
 ---
 
 # dagster-hightouch

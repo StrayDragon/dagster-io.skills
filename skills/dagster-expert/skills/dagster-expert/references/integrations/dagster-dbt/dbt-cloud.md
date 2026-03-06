@@ -1,8 +1,7 @@
 ---
-description: Integrating dbt Cloud projects into Dagster for cloud-based dbt orchestration.
+title: "dbt: Cloud Integration"
 triggers:
-  - "dbt Cloud, cloud-based dbt"
-  - "dbt Cloud integration"
+  - "integrating dbt Cloud with Dagster"
 ---
 
 # dbt Cloud Integration

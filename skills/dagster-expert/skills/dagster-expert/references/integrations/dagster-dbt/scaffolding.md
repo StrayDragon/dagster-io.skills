@@ -1,8 +1,7 @@
 ---
-description: Step-by-step guide for scaffolding a new dbt component in a Dagster project.
+title: "dbt: Scaffolding"
 triggers:
-  - "scaffold dbt, create dbt component"
-  - "new dbt project in Dagster, set up dbt"
+  - "scaffolding a new dbt component in a Dagster project"
 ---
 
 # Scaffolding a dbt Component
@@ -64,7 +63,7 @@ Common adapters:
 
 ## Verify
 
-Run `dg list defs` to confirm the manifest compiled and assets are visible:
+Always run `dg list defs` to confirm the manifest compiled and assets are visible:
 
 ```bash
 dg list defs

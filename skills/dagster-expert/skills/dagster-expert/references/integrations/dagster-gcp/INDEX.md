@@ -1,7 +1,7 @@
 ---
-description: Integration with Google Cloud Platform (BigQuery, GCS, etc.).
+title: dagster-gcp
 triggers:
-  - "gcp, bigquery, gcs, google cloud"
+  - "Google Cloud Platform (BigQuery, GCS) from Dagster"
 ---
 
 # dagster-gcp

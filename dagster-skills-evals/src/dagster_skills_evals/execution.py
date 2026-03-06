@@ -165,7 +165,9 @@ class ClaudeExecutionResult:
             were taken. Focus on the high-level steps rather than exactly documenting
             each turn. Output ONLY bullet points (no header or extraneous comments)
             in sequential order. Do not use fancy formatting. Explicitly call out
-            the specific skills that are used.{extra}
+            the specific skills that are used and CLI commands that are executed.
+            Take note of any mistakes that were made and how they were corrected.
+            {extra}
 
             Session events:
             {json.dumps(self.messages, indent=2)}

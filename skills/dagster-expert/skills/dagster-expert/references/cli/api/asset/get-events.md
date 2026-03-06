@@ -1,8 +1,7 @@
 ---
-description: "dg api asset get-events: retrieve materialization and observation events for an asset from Dagster Plus."
+title: dg api asset get-events
 triggers:
-  - "asset events, materialization events, observation events"
-  - "asset history, asset partitions, event log"
+  - "materialization or observation event history for an asset"
 ---
 
 ```bash

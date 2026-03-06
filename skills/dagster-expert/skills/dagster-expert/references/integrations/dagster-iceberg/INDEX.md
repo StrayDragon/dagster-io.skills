@@ -1,7 +1,7 @@
 ---
-description: Integration with Apache Iceberg for table format management (community-maintained).
+title: dagster-iceberg
 triggers:
-  - "iceberg, table format"
+  - "Apache Iceberg table format management"
 ---
 
 # dagster-iceberg

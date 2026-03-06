@@ -1,7 +1,7 @@
 ---
-description: Integration with Airflow for migrating and co-orchestrating Airflow DAGs.
+title: dagster-airlift
 triggers:
-  - "airflow, airlift, DAG migration"
+  - "migrating or co-orchestrating Airflow DAGs with Dagster"
 ---
 
 # dagster-airlift

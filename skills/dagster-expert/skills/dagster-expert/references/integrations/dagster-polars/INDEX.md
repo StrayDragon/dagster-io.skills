@@ -1,7 +1,7 @@
 ---
-description: Integration with Polars for fast DataFrame processing (community-maintained).
+title: dagster-polars
 triggers:
-  - "polars, fast dataframe"
+  - "fast DataFrame processing with Polars"
 ---
 
 # dagster-polars

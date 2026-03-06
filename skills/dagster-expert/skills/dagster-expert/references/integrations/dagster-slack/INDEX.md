@@ -1,7 +1,7 @@
 ---
-description: Integration with Slack for notifications and alerts.
+title: dagster-slack
 triggers:
-  - "slack, notifications, chat alerts"
+  - "Slack notifications or alerts from Dagster"
 ---
 
 # dagster-slack

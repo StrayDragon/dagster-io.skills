@@ -1,8 +1,7 @@
 ---
-description: "dg launch command: materialize assets and execute jobs locally."
+title: dg launch
 triggers:
-  - "dg launch"
-  - "execute locally"
+  - "materializing assets or executing jobs locally"
 ---
 
 `dg launch` executes runs of assets or jobs locally and in-process. Useful for development but will NOT execute runs on a remote Dagster deployment.

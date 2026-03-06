@@ -1,7 +1,7 @@
 ---
-description: "dg list component-tree: display component instance hierarchy."
+title: dg list component-tree
 triggers:
-  - "component tree, component hierarchy"
+  - "viewing the component instance hierarchy"
 ---
 
 ```bash

@@ -1,8 +1,7 @@
 ---
-description: Customizing declarative automation conditions with without(), replace(), allow(), and ignore().
+title: Customization
 triggers:
-  - "customize automation condition"
-  - "without, replace, allow, ignore condition"
+  - "customizing conditions with without(), replace(), allow(), or ignore()"
 ---
 
 # Declarative Automation: Customization

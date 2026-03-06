@@ -1,7 +1,7 @@
 ---
-description: Integration with Dask for parallel and distributed computing.
+title: dagster-dask
 triggers:
-  - "dask, parallel computing"
+  - "parallel and distributed computing with Dask"
 ---
 
 # dagster-dask

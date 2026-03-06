@@ -1,7 +1,7 @@
 ---
-description: Integration with Tableau for BI dashboard assets.
+title: dagster-tableau
 triggers:
-  - "tableau, BI dashboard"
+  - "Tableau BI dashboard assets"
 ---
 
 # dagster-tableau

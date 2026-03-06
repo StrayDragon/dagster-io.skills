@@ -1,8 +1,7 @@
 ---
-description: "dg scaffold component: scaffold a custom reusable component type."
+title: dg scaffold component
 triggers:
-  - "custom component, create component type"
-  - "create reusable component"
+  - "creating a custom reusable component type"
 ---
 
 Scaffold a new custom Dagster component type class. Must be run inside a Dagster project directory. The scaffold is placed in `<project_name>.lib.<name>`.

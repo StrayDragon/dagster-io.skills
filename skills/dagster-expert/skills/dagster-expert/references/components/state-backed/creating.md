@@ -1,9 +1,7 @@
 ---
-description: Creating custom state-backed components that fetch and cache external state.
+title: Creating State-Backed Components
 triggers:
-  - "create state-backed component, StateBackedComponent subclass"
-  - "write_state_to_path, build_defs_from_state"
-  - "defs_state_config, DefsStateConfig"
+  - "building a component that fetches and caches external state"
 ---
 
 # Creating State-Backed Components

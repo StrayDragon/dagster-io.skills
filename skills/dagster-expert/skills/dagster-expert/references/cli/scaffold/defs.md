@@ -1,8 +1,7 @@
 ---
-description: "dg scaffold defs: add new definitions to a project."
+title: dg scaffold defs
 triggers:
-  - "create asset, create schedule, create sensor"
-  - "add component, scaffold component"
+  - "adding new definitions (assets, schedules, sensors, components) to a project"
 ---
 
 `dg scaffold defs` is the preferred way to add new definitions to the project. It automatically ensures new code is added to the correct location.
@@ -40,3 +39,5 @@ For one-off components, use `inline-component` to place the component class defi
 ```bash
 dg scaffold defs inline-component
 ```
+
+## Important: Always run `dg list defs` to confirm the definitions were scaffolded correctly

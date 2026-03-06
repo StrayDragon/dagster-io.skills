@@ -1,8 +1,7 @@
 ---
-description: "dg api schedule get: retrieve details for a specific schedule from Dagster Plus."
+title: dg api schedule get
 triggers:
-  - "schedule details, get schedule, schedule info"
-  - "schedule status, schedule configuration"
+  - "details about a specific schedule"
 ---
 
 ```bash

@@ -1,7 +1,7 @@
 ---
-description: Integration with Azure services (ADLS, Blob Storage, etc.).
+title: dagster-azure
 triggers:
-  - "azure, adls, blob storage, microsoft cloud"
+  - "Azure services (ADLS, Blob Storage) from Dagster"
 ---
 
 # dagster-azure

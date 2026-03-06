@@ -1,8 +1,7 @@
 ---
-description: "dg api sensor get: retrieve details for a specific sensor from Dagster Plus."
+title: dg api sensor get
 triggers:
-  - "sensor details, get sensor, sensor info"
-  - "sensor status, sensor configuration"
+  - "details about a specific sensor"
 ---
 
 ```bash

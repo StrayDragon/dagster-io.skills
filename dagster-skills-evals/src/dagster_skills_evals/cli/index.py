@@ -12,14 +12,14 @@ _BEGIN_MARKER = "<!-- BEGIN GENERATED INDEX -->"
 _END_MARKER = "<!-- END GENERATED INDEX -->"
 
 
-def _format_entry(link: str, link_text: str, fm: dict) -> str:
+def _format_entry(link: str, fm: dict) -> str:
     """Format a single reference entry as a bullet point."""
-    desc = fm.get("description", "")
+    title = fm.get("title", "")
     triggers = fm.get("triggers", [])
     trigger_str = "; ".join(triggers) if triggers else ""
-    line = f"- [{link_text}]({link}) — {desc}"
+    line = f"- [{title}]({link})"
     if trigger_str:
-        line += f" ({trigger_str})"
+        line += f" — {trigger_str}"
     return line
 
 
@@ -56,8 +56,7 @@ def _emit_file(path: Path, rel: Path, target: list[str], link_prefix: str) -> No
     fm = parse_frontmatter_raw(path)
     if fm is None:
         return
-    link_text = str(rel).removesuffix(".md").removesuffix("/INDEX")
-    target.append(_format_entry(f"./{link_prefix}{rel}", link_text, fm))
+    target.append(_format_entry(f"./{link_prefix}{rel}", fm))
 
 
 def _collect_and_generate(refs_dir: Path) -> tuple[str, dict[Path, str]]:

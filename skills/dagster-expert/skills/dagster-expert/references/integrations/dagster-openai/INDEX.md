@@ -1,7 +1,7 @@
 ---
-description: Integration with OpenAI for LLM-powered assets.
+title: dagster-openai
 triggers:
-  - "openai, LLM, AI integration"
+  - "LLM-powered assets with OpenAI"
 ---
 
 # dagster-openai

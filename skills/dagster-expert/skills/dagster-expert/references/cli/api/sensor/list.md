@@ -1,8 +1,7 @@
 ---
-description: "dg api sensor list: list sensors from Dagster Plus."
+title: dg api sensor list
 triggers:
-  - "list sensors, show sensors, all sensors"
-  - "sensor inventory, browse sensors"
+  - "listing sensors in Dagster Plus"
 ---
 
 ```bash

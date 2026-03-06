@@ -1,8 +1,7 @@
 ---
-description: "dg api: general tips and patterns for interacting with `dg api` subcommands."
+title: "dg api: General"
 triggers:
-  - "always read before using any `dg api` subcommand"
-  - "dg api response schema, parsing dg api output, dg api workflow"
+  - "always read before using any dg api subcommand"
 ---
 
 All `dg api` subcommands support `--json`, `--response-schema`, `--deployment`, `--organization`, `--api-token`, and `--view-graphql`.

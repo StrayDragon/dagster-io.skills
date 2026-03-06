@@ -1,7 +1,7 @@
 ---
-description: Integration with Snowflake for cloud data warehouse operations.
+title: dagster-snowflake
 triggers:
-  - "snowflake, cloud data warehouse"
+  - "interacting with Snowflake from Dagster"
 ---
 
 # dagster-snowflake

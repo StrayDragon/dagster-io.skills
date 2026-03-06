@@ -1,7 +1,7 @@
 ---
-description: Integration with Celery for distributed task execution.
+title: dagster-celery
 triggers:
-  - "celery, distributed task queue"
+  - "distributed task execution with Celery"
 ---
 
 # dagster-celery

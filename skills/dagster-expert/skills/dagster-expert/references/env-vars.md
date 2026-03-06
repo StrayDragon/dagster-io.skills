@@ -1,8 +1,7 @@
 ---
-description: Environment variable configuration for Dagster projects across different environments.
+title: Environment Variables
 triggers:
-  - "environment variables, env, config"
-  - "different environments, staging, production"
+  - "configuring environment variables across different environments"
 ---
 
 # Environment Variables Reference

@@ -1,7 +1,7 @@
 ---
-description: Integration with Apache Spark for distributed data processing.
+title: dagster-spark
 triggers:
-  - "spark, distributed processing"
+  - "distributed data processing with Apache Spark"
 ---
 
 # dagster-spark

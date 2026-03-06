@@ -1,8 +1,7 @@
 ---
-description: Run status sensors that monitor run success, failure, and trigger actions.
+title: Run Status Sensors
 triggers:
-  - "run status sensor, success/failure monitoring"
-  - "run completion trigger, alerting on run status"
+  - "reacting to run success, failure, or other status changes"
 ---
 
 # Run Status Sensors

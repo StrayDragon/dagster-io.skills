@@ -1,7 +1,7 @@
 ---
-description: Integration with PagerDuty for incident management alerts.
+title: dagster-pagerduty
 triggers:
-  - "pagerduty, incident management, alerting"
+  - "incident management alerts with PagerDuty"
 ---
 
 # dagster-pagerduty

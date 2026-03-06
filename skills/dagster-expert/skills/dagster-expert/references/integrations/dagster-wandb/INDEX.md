@@ -1,7 +1,7 @@
 ---
-description: Integration with Weights and Biases for ML experiment tracking (community-maintained).
+title: dagster-wandb
 triggers:
-  - "wandb, weights and biases, ML tracking"
+  - "ML experiment tracking with Weights & Biases"
 ---
 
 # dagster-wandb

@@ -1,7 +1,7 @@
 ---
-description: Integration with Datadog for monitoring and observability.
+title: dagster-datadog
 triggers:
-  - "datadog, monitoring, observability"
+  - "monitoring and observability with Datadog"
 ---
 
 # dagster-datadog

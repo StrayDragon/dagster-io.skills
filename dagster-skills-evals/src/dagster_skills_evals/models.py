@@ -8,7 +8,7 @@ class ReferenceFrontmatter(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    description: str
+    title: str
     triggers: list[str]
     type: Literal["index"] | None = None
 

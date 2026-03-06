@@ -1,8 +1,7 @@
 ---
-description: DbtProjectComponent configuration and customization for dbt Core projects in Dagster.
+title: "dbt: Component-Based Integration"
 triggers:
-  - "DbtProjectComponent configuration, customize dbt component"
-  - "dbt component settings, dbt translation"
+  - "configuring or customizing DbtProjectComponent"
 ---
 
 # Component-Based Integration

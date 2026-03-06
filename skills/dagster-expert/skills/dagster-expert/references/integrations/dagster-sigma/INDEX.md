@@ -1,7 +1,7 @@
 ---
-description: Integration with Sigma for BI and analytics assets.
+title: dagster-sigma
 triggers:
-  - "sigma, BI analytics"
+  - "BI and analytics assets with Sigma"
 ---
 
 # dagster-sigma

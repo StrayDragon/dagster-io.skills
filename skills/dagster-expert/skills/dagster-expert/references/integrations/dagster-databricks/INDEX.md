@@ -1,7 +1,7 @@
 ---
-description: Integration with Databricks for Spark-based data processing.
+title: dagster-databricks
 triggers:
-  - "databricks, spark cluster"
+  - "Spark-based data processing on Databricks"
 ---
 
 # dagster-databricks

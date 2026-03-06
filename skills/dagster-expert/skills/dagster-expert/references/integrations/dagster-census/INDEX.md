@@ -1,7 +1,7 @@
 ---
-description: Integration with Census for reverse ETL syncs (community-maintained).
+title: dagster-census
 triggers:
-  - "census, reverse ETL"
+  - "reverse ETL syncs with Census"
 ---
 
 # dagster-census

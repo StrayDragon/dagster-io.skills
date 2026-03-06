@@ -1,8 +1,7 @@
 ---
-description: "dg list projects: list projects in the current workspace."
+title: dg list projects
 triggers:
-  - "list projects, workspace projects"
-  - "find project path"
+  - "listing projects in the current workspace"
 ---
 
 ```bash

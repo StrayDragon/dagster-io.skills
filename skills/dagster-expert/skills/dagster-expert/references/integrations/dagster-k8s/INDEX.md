@@ -1,7 +1,7 @@
 ---
-description: Integration with Kubernetes for container orchestration and execution.
+title: dagster-k8s
 triggers:
-  - "kubernetes, k8s, container orchestration"
+  - "Kubernetes container orchestration and execution"
 ---
 
 # dagster-k8s

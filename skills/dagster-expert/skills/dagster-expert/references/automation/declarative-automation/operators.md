@@ -1,8 +1,7 @@
 ---
-description: Declarative automation operators for combining and transforming conditions (since, any_deps_match).
+title: Operators
 triggers:
-  - "automation operator, since, any_deps_match"
-  - "combining conditions, boolean operators"
+  - "combining conditions using since, any_deps_match, or boolean operators"
 ---
 
 # Declarative Automation: Operators

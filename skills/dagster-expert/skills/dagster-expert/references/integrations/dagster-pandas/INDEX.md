@@ -1,7 +1,7 @@
 ---
-description: Integration with Pandas for DataFrame type checking and validation.
+title: dagster-pandas
 triggers:
-  - "pandas, dataframe validation"
+  - "Pandas DataFrame type checking and validation"
 ---
 
 # dagster-pandas

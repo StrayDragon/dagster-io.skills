@@ -1,7 +1,7 @@
 ---
-description: Integration with Airbyte for EL (Extract-Load) syncs as Dagster assets.
+title: dagster-airbyte
 triggers:
-  - "airbyte, extract-load sync"
+  - "Airbyte extract-load syncs as Dagster assets"
 ---
 
 # dagster-airbyte

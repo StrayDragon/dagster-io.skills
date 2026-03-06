@@ -1,8 +1,7 @@
 ---
-description: "dg api secret get: retrieve details for a specific secret from Dagster Plus."
+title: dg api secret get
 triggers:
-  - "secret details, get secret, secret info"
-  - "secret value, secret configuration"
+  - "details about a specific secret"
 ---
 
 ```bash

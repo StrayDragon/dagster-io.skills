@@ -1,7 +1,7 @@
 ---
-description: Integration with MLflow for ML experiment tracking and model management.
+title: dagster-mlflow
 triggers:
-  - "mlflow, ML tracking, model management"
+  - "ML experiment tracking and model management with MLflow"
 ---
 
 # dagster-mlflow

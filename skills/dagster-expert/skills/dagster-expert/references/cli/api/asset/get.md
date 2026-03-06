@@ -1,8 +1,7 @@
 ---
-description: "dg api asset get: retrieve details for a specific asset from Dagster Plus."
+title: dg api asset get
 triggers:
-  - "asset details, get asset, asset info"
-  - "asset status, asset metadata"
+  - "details about a specific asset"
 ---
 
 ```bash

@@ -1,8 +1,7 @@
 ---
-description: "dg list defs: list and filter registered Dagster definitions."
+title: dg list defs
 triggers:
-  - "list defs, list assets, show definitions"
-  - "filter assets by tag, group, kind"
+  - "listing or filtering registered definitions"
 ---
 
 List all registered Dagster definitions (assets, jobs, schedules, sensors, resources) in the current project.

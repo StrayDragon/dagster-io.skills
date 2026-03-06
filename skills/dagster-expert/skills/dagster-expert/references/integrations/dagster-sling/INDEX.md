@@ -1,7 +1,7 @@
 ---
-description: Integration with Sling for EL (Extract-Load) data replication.
+title: dagster-sling
 triggers:
-  - "sling, data replication, extract-load"
+  - "EL data replication with Sling"
 ---
 
 # dagster-sling

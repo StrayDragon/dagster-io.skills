@@ -1,8 +1,7 @@
 ---
-description: Decision tree for choosing between schedules, sensors, and declarative automation.
+title: Choosing an Automation Approach
 triggers:
-  - "which automation approach, schedule vs sensor vs declarative"
-  - "set up automation, choose automation type"
+  - "deciding between schedules, sensors, and declarative automation"
 ---
 
 # Choosing an Automation Approach

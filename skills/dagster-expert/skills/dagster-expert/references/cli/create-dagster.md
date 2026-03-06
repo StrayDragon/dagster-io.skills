@@ -1,8 +1,7 @@
 ---
-description: "Create a new Dagster project using the `uvx create-dagster` command."
+title: create-dagster
 triggers:
-  - "create a new Dagster project"
-  - "initial project setup"
+  - "creating a new Dagster project from scratch"
 ---
 
 The `create-dagster` command scaffolds a new Dagster project with the proper Python package structure and Dagster-specific configuration.

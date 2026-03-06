@@ -1,8 +1,7 @@
 ---
-description: "dg api agent list: list agents from Dagster Plus."
+title: dg api agent list
 triggers:
-  - "list agents, show agents, all agents"
-  - "agent inventory, browse agents"
+  - "listing agents in Dagster Plus"
 ---
 
 ```bash

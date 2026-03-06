@@ -1,7 +1,7 @@
 ---
-description: Integration with Microsoft Teams for notifications and alerts.
+title: dagster-msteams
 triggers:
-  - "microsoft teams, msteams, notifications"
+  - "Microsoft Teams notifications and alerts from Dagster"
 ---
 
 # dagster-msteams

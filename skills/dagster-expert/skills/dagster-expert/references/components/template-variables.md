@@ -1,9 +1,7 @@
 ---
-description: Template variables available in component YAML files, including built-in scopes and custom template vars.
+title: Template Variables
 triggers:
-  - "template variable, Jinja2 template, YAML template"
-  - "env scope, dg scope, context scope, asset scope"
-  - "custom template var, template_var decorator, UDF"
+  - "using Jinja2 template variables in component YAML (env, dg, context, or custom scopes)"
 ---
 
 # Template Variables
