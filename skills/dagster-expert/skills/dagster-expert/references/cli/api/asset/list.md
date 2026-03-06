@@ -5,26 +5,9 @@ triggers:
   - "asset inventory, browse assets"
 ---
 
-# dg api asset list
-
 ```bash
 dg api asset list
 ```
 
-## General
-
-List assets from Dagster Plus with pagination support.
-
-For shared flags (`--json`, `--response-schema`, `--deployment`, `--organization`, `--api-token`, `--view-graphql`), see [general.md](../general.md).
-
-## --limit
-
-Maximum number of assets to return.
-
-## --cursor
-
-Pagination cursor for retrieving additional assets.
-
-## --status
-
-Include detailed status information in the response.
+- `--status` — includes detailed status information in the response
+- `--limit` / `--cursor` — pagination support

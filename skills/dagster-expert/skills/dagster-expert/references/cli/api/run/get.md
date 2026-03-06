@@ -5,14 +5,6 @@ triggers:
   - "run status, run metadata"
 ---
 
-# dg api run get
-
 ```bash
 dg api run get <RUN_ID>
 ```
-
-## General
-
-Retrieve details for a specific run by ID from Dagster Plus.
-
-For shared flags (`--json`, `--response-schema`, `--deployment`, `--organization`, `--api-token`, `--view-graphql`), see [general.md](../general.md).

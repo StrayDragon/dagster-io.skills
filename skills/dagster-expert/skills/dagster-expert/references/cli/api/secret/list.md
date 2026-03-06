@@ -5,24 +5,9 @@ triggers:
   - "secret inventory, browse secrets"
 ---
 
-# dg api secret list
-
 ```bash
 dg api secret list
 ```
 
-## General
-
-List all secrets from Dagster Plus.
-
-<!-- TODO: Add tips for secret workflows -->
-
-For shared flags (`--json`, `--response-schema`, `--deployment`, `--organization`, `--api-token`, `--view-graphql`), see [general.md](../general.md).
-
-## --location
-
-Filter by code location.
-
-## --scope
-
-Filter by secret scope.
+- `--location` — filter by code location
+- `--scope` — filter by secret scope

@@ -5,14 +5,6 @@ triggers:
   - "sensor status, sensor configuration"
 ---
 
-# dg api sensor get
-
 ```bash
 dg api sensor get <SENSOR_NAME>
 ```
-
-## General
-
-Retrieve details for a specific sensor by name from Dagster Plus.
-
-For shared flags (`--json`, `--response-schema`, `--deployment`, `--organization`, `--api-token`, `--view-graphql`), see [general.md](../general.md).

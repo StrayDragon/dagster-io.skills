@@ -5,47 +5,37 @@ triggers:
   - "upstream, downstream, asset selection syntax"
 ---
 
-# Asset Selection Syntax
-
 Reference for the asset selection syntax used by `dg list defs --assets` and `dg launch --assets`.
 
 ## Attributes
 
-| Attribute | Syntax                             | Example                        |
-| --------- | ---------------------------------- | ------------------------------ |
-| `key`     | `key:<name>` or `<name>`           | `key:customers` or `customers` |
-| `tag`     | `tag:<key>=<value>` or `tag:<key>` | `tag:priority=high`            |
-| `owner`   | `owner:<value>`                    | `owner:team@company.com`       |
-| `group`   | `group:<value>`                    | `group:sales_analytics`        |
-| `kind`    | `kind:<value>`                     | `kind:dbt`                     |
+- `key:<name>` or just `<name>` — select by asset key (e.g. `customers`)
+- `tag:<key>=<value>` or `tag:<key>` — select by tag (e.g. `tag:priority=high`)
+- `owner:<value>` — select by owner (e.g. `owner:team@company.com`)
+- `group:<value>` — select by group (e.g. `group:sales_analytics`)
+- `kind:<value>` — select by kind (e.g. `kind:dbt`)
 
 **Wildcards:** `key:customer*`, `key:*_raw`, `*` (all assets)
 
 ## Operators
 
-| Operator | Syntax        | Example                                           |
-| -------- | ------------- | ------------------------------------------------- |
-| AND      | `and` / `AND` | `tag:priority=high and kind:dbt`                  |
-| OR       | `or` / `OR`   | `group:sales or group:marketing`                  |
-| NOT      | `not` / `NOT` | `not kind:dbt`                                    |
-| Grouping | `(expr)`      | `tag:priority=high and (kind:dbt or kind:python)` |
+- `and` / `AND` — e.g. `tag:priority=high and kind:dbt`
+- `or` / `OR` — e.g. `group:sales or group:marketing`
+- `not` / `NOT` — e.g. `not kind:dbt`
+- `(expr)` — grouping, e.g. `tag:priority=high and (kind:dbt or kind:python)`
 
 ## Functions
 
-| Function      | Description                          | Example                  |
-| ------------- | ------------------------------------ | ------------------------ |
-| `sinks(expr)` | Assets with no downstream dependents | `sinks(group:analytics)` |
-| `roots(expr)` | Assets with no upstream dependencies | `roots(kind:dbt)`        |
+- `sinks(expr)` — assets with no downstream dependents (e.g. `sinks(group:analytics)`)
+- `roots(expr)` — assets with no upstream dependencies (e.g. `roots(kind:dbt)`)
 
 ## Traversals
 
-| Syntax     | Description               | Example             |
-| ---------- | ------------------------- | ------------------- |
-| `+expr`    | All upstream dependencies | `+customers`        |
-| `expr+`    | All downstream dependents | `customers+`        |
-| `N+expr`   | N levels upstream         | `2+kind:dbt`        |
-| `expr+N`   | N levels downstream       | `group:sales+1`     |
-| `N+expr+M` | N up, M down              | `1+key:customers+2` |
+- `+expr` — all upstream dependencies (e.g. `+customers`)
+- `expr+` — all downstream dependents (e.g. `customers+`)
+- `N+expr` — N levels upstream (e.g. `2+kind:dbt`)
+- `expr+N` — N levels downstream (e.g. `group:sales+1`)
+- `N+expr+M` — N up, M down (e.g. `1+key:customers+2`)
 
 ## Examples
 
