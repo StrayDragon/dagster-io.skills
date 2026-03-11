@@ -1,5 +1,5 @@
 ---
-title: Integration with Snowflake and Pandas for DataFrame IO managers.
+title: dagster-snowflake-pandas
 triggers:
   - "snowflake pandas, snowflake dataframe"
 ---

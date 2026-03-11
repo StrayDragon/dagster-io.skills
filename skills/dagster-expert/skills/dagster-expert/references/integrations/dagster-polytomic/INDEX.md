@@ -1,5 +1,5 @@
 ---
-title: Integration with Polytomic for data syncing.
+title: dagster-polytomic
 triggers:
   - "polytomic, data sync"
 ---

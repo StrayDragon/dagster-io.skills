@@ -1,5 +1,5 @@
 ---
-title: Integration with Delta Lake and Pandas for DataFrame IO managers.
+title: dagster-deltalake-pandas
 triggers:
   - "delta lake pandas, deltalake dataframe"
 ---

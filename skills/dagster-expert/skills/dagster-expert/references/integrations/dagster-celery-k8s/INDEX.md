@@ -1,5 +1,5 @@
 ---
-title: Integration with Celery and Kubernetes for distributed container orchestration.
+title: dagster-celery-k8s
 triggers:
   - "celery kubernetes, celery k8s, distributed orchestration"
 ---

@@ -1,5 +1,5 @@
 ---
-title: Integration with DuckDB and PySpark for DataFrame IO managers.
+title: dagster-duckdb-pyspark
 triggers:
   - "duckdb pyspark, duckdb spark"
 ---

@@ -1,5 +1,5 @@
 ---
-title: Integration with Snowflake and Polars for DataFrame IO managers.
+title: dagster-snowflake-polars
 triggers:
   - "snowflake polars, snowflake dataframe"
 ---

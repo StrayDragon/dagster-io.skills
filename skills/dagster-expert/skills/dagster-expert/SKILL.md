@@ -6,6 +6,17 @@ description:
   Common tasks may include creating a new project, adding new definitions, understanding the current project structure, answering general questions about the codebase (finding asset, schedule, sensor, component or job definitions), debugging issues, or providing deep information about a specific Dagster concept.
 ---
 
+## Core Dagster Concepts
+
+Brief definitions only (see reference files for detailed examples):
+
+- **Asset**: Persistent object (table, file, model) produced by your pipeline
+- **Component**: Reusable building block that generates definitions (assets, schedules, sensors, jobs, etc.) relevant to a particular domain.
+
+## Integration Workflow
+
+When integrating with ANY external tool or service, read the [Integration libraries index](./references/integrations/INDEX.md). This contains information about which integration libraries exist, and references on how to create new custom integrations for tools that do not have a published library.
+
 ## dg CLI
 
 The `dg` CLI is the recommended way to programmatically interact with Dagster (adding definitions, launching runs, exploring project structure, etc.). It is installed as part of the `dagster-dg-cli` package. If a relevant CLI command for a given task exists, always attempt to use it.
@@ -22,13 +33,6 @@ Projects typically use `uv` for dependency management, and it is recommended to 
 uv run dg list defs
 uv run dg launch --assets my_asset
 ```
-
-## Core Dagster Concepts
-
-Brief definitions only (see reference files for detailed examples):
-
-- **Asset**: Persistent object (table, file, model) produced by your pipeline
-- **Component**: Reusable building block that generates definitions (assets, schedules, sensors, jobs, etc.) relevant to a particular domain.
 
 ## CRITICAL: Always Read Reference Files Before Answering
 
@@ -106,7 +110,7 @@ For every question, identify which reference file(s) are relevant using the inde
 - [dg utils integrations](./references/cli/utils/integrations.md) — viewing the integration index
 - [dg utils refresh-defs-state](./references/cli/utils/refresh-defs-state.md) — refreshing cached state for state-backed components
 - [Creating Components](./references/components/creating-components.md) — building a new custom component from scratch
-- [Designing Component Integrations](./references/components/designing-component-integrations.md) — designing a component that wraps an external service or tool
+- [Designing Component Integrations](./references/components/designing-component-integrations.md) — designing a component that wraps an external service or tool; custom integrations
 - [Resolved Framework](./references/components/resolved-framework.md) — defining custom YAML schema types using Resolver, Model, or Resolvable
 - [Subclassing Components](./references/components/subclassing-components.md) — extending an existing component via subclassing
 - [Template Variables](./references/components/template-variables.md) — using Jinja2 template variables in component YAML (env, dg, context, or custom scopes)

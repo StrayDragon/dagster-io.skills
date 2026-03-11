@@ -1,5 +1,5 @@
 ---
-title: Integration with dlt (data load tool) for declarative data pipelines.
+title: dagster-dlt
 triggers:
   - "dlt, data load tool, declarative pipelines"
 ---

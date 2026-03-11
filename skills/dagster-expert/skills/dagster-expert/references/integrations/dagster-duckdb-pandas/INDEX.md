@@ -1,5 +1,5 @@
 ---
-title: Integration with DuckDB and Pandas for DataFrame IO managers.
+title: dagster-duckdb-pandas
 triggers:
   - "duckdb pandas, duckdb dataframe"
 ---

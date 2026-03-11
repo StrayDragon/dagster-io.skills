@@ -1,5 +1,5 @@
 ---
-title: Integration with Snowflake and PySpark for DataFrame IO managers.
+title: dagster-snowflake-pyspark
 triggers:
   - "snowflake pyspark, snowflake spark"
 ---

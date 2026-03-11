@@ -41,3 +41,7 @@ dg scaffold defs inline-component
 ```
 
 ## Important: Always run `dg list defs` to confirm the definitions were scaffolded correctly
+
+## Inspecting Components Before Scaffolding
+
+To inspect a component's scaffold parameters or `defs.yaml` schema before scaffolding, use [`dg utils inspect-component`](../utils/inspect-component.md).

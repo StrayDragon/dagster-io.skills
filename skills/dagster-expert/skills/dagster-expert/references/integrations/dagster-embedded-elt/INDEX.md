@@ -1,5 +1,5 @@
 ---
-title: Integration for embedded ELT with Sling and dlt support.
+title: dagster-embedded-elt
 triggers:
   - "embedded elt, sling, dlt, extract load transform"
 ---

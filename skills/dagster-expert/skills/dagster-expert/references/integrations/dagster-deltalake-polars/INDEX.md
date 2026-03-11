@@ -1,5 +1,5 @@
 ---
-title: Integration with Delta Lake and Polars for DataFrame IO managers.
+title: dagster-deltalake-polars
 triggers:
   - "delta lake polars, deltalake dataframe"
 ---

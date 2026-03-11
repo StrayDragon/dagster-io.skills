@@ -1,5 +1,5 @@
 ---
-title: Integration with GCP BigQuery and PySpark for DataFrame IO managers.
+title: dagster-gcp-pyspark
 triggers:
   - "gcp pyspark, bigquery pyspark, bigquery spark"
 ---

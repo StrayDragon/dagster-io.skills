@@ -1,5 +1,5 @@
 ---
-title: Integration with GCP BigQuery and Pandas for DataFrame IO managers.
+title: dagster-gcp-pandas
 triggers:
   - "gcp pandas, bigquery pandas, bigquery dataframe"
 ---

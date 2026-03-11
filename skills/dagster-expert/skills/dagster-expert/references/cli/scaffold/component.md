@@ -13,3 +13,7 @@ dg scaffold component <class-name>
 ```
 
 `--model / --no-model` — whether the generated class inherits from `dagster.components.Model` (default: `--model`).
+
+## Inspecting Components
+
+To inspect an existing component type's description, scaffold parameters, or `defs.yaml` schema, use [`dg utils inspect-component`](../utils/inspect-component.md).

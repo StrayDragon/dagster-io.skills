@@ -2,9 +2,14 @@
 title: Designing Component Integrations
 triggers:
   - "designing a component that wraps an external service or tool"
+  - "custom integrations"
 ---
 
 # Designing Component Integrations
+
+## When to Use This Guide
+
+This guide applies whenever you need to integrate with an external tool — whether or not a published `dagster-*` library exists. If no library exists, you should **always** create a custom component rather than writing raw `@dg.asset` or `@dg.sensor` definitions. See [Integration Workflow](../integrations/INDEX.md#custom-integration-workflow-no-library-exists) for the scaffolding steps.
 
 ## Three Levels of Integration
 
@@ -98,6 +103,24 @@ class CustomComponent(MyServiceComponent):
         return spec.replace_attributes(group_name="my_group")
 ```
 
+## Pattern: Credentials and Secrets
+
+Component fields should accept credential **values** directly (e.g. `api_key: str`), not environment variable names (e.g. `api_key_env_var: str`). YAML users provide secrets via the Jinja `{{ env.VAR }}` syntax, which is resolved at component load time. The component code then uses the resolved value directly.
+
+```python
+class MyServiceComponent(dg.Component, dg.Model, dg.Resolvable):
+    api_secret: str
+```
+
+```yaml
+type: my_project.components.my_service_component.MyServiceComponent
+
+attributes:
+  api_secret: "{{ env.MY_SERVICE_API_SECRET }}"
+```
+
+See [Template Variables](./template-variables.md) for more information.
+
 ## Pattern: `execute()` Method
 
 A public method for triggering external tool execution. Designed for subclass override.
@@ -121,9 +144,43 @@ def _build_multi_asset(self, connector_id, asset_specs, resource):
     return _assets
 ```
 
+## Pattern: Subsettable Multi-Assets
+
+When the external tool supports executing an arbitrary subset of the assets defined in a single component instance, add `can_subset=True` to `@dg.multi_asset()` and use `context.selected_asset_keys` to determine which assets to execute.
+
+**When to use**: The external tool lets you select which assets to execute independently (e.g. dbt lets you select any subset of models to build).
+
+**When NOT to use**: The external tool executes all assets atomically (e.g. a Fivetran connector sync runs all tables together — no per-table control).
+
+**Key changes**:
+1. Add `can_subset=True` to the `@dg.multi_asset()` decorator in the `_build_multi_asset` helper
+2. Mark each `AssetSpec` with `skippable=True` so Dagster knows individual assets can be skipped when subsetting
+3. Pass `context` through to `execute()`:
+
+```python
+def _build_multi_asset(self, connector_id, asset_specs, resource):
+    @dg.multi_asset(name=connector_id, specs=asset_specs, can_subset=True)
+    def _assets(context: dg.AssetExecutionContext):
+        yield from self.execute(context=context, resource=resource)
+
+    return _assets
+```
+
+The `execute()` method can then use `context.selected_asset_keys` to only process the requested subset:
+
+```python nocheckundefined
+def execute(
+    self, context: dg.AssetExecutionContext, resource: MyServiceWorkspace
+) -> Iterable[dg.MaterializeResult]:
+    for key in context.selected_asset_keys:
+        yield from resource.sync_asset(key, context=context)
+```
+
 ## Pattern: Observation via Sensors
 
-For components that need to monitor external tool events without orchestrating them, a component's `build_defs` would include a sensor definition (adding this sensor could be controlled via a boolean flag on the component):
+For components that need to monitor external tool events without orchestrating them, a component's `build_defs` should include a sensor definition (adding this sensor could be controlled via a boolean flag on the component).
+
+**Important**: Sensors for observing an external tool MUST be bundled inside the component's `build_defs()` method — do NOT create separate standalone `@dg.sensor` definition files for the same tool. The component should be the single source of truth for all definitions related to an integration, including sensors. This keeps observe vs. orchestrate mode toggling in one place (the component's YAML config).
 
 ```python
 def build_defs(self, context: dg.ComponentLoadContext) -> dg.Definitions:
@@ -140,3 +197,17 @@ def build_defs(self, context: dg.ComponentLoadContext) -> dg.Definitions:
 
     return dg.Definitions(assets=asset_specs, sensors=[_sensor] if self.enable_sensor else None)
 ```
+
+## Cross-Component Dependencies
+
+Components in the same code location can reference each other's assets by key — Dagster resolves all `deps` references across all components at load time. A downstream component only needs to know the **asset key** of an upstream asset, not where or how it's defined.
+
+```python nocheckundefined
+# In a Census reverse ETL component — depends on dbt-produced marts
+dg.AssetSpec(
+    key=dg.AssetKey(["census", "salesforce_sync"]),
+    deps=[dg.AssetKey(["snowflake", "marts", "mart_customers"])],  # produced by DbtProjectComponent
+)
+```
+
+The `DbtProjectComponent` (or `FivetranAccountComponent`, etc.) is solely responsible for producing its own asset specs. Downstream components just reference the keys via `deps=`. There is no need to pre-define or duplicate asset specs for the dependency graph to connect.

@@ -54,8 +54,8 @@ class MyComponent(dg.Component, dg.Resolvable, dg.Model):
         spec = self.spec
 
         @dg.multi_asset(specs=[spec])
-        def my_asset(ctx: dg.AssetExecutionContext):
-            ctx.log.info(f"Running query: {self.query}")
+        def my_asset(context: dg.AssetExecutionContext):
+            context.log.info(f"Running query: {self.query}")
             # ... materialize the asset ...
 
         return dg.Definitions(assets=[my_asset])
@@ -74,6 +74,12 @@ attributes:
       - sql
   query: "SELECT * FROM orders"
 ```
+
+## Subsettable Multi-Assets
+
+When a component produces multiple assets and the underlying tool supports executing an arbitrary subset independently, add `can_subset=True` to `@dg.multi_asset()` and mark each `AssetSpec` with `skippable=True`. Use `context.selected_asset_keys` to determine which assets to execute.
+
+See [Designing Component Integrations](./designing-component-integrations.md#pattern-subsettable-multi-assets) for the full pattern, including when to use subsetting vs. atomic execution.
 
 ## Expensive Operations
 

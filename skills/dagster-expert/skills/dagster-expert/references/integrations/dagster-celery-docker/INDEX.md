@@ -1,5 +1,5 @@
 ---
-title: Integration with Celery and Docker for distributed containerized execution.
+title: dagster-celery-docker
 triggers:
   - "celery docker, distributed container execution"
 ---
