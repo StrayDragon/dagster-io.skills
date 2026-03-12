@@ -109,7 +109,7 @@ class BaselineManager:
         self._assert_improvement(self.baseline, result.summary)
 
 
-def pytest_addoption(parser):
+def pytest_addoption(parser: pytest.Parser):
     parser.addoption(
         "--snapshot-update",
         action="store_true",
