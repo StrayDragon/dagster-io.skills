@@ -16,7 +16,7 @@ Use the CLI to generate boilerplate for a new component:
 dg scaffold component MyComponent
 ```
 
-This creates the class file and registers it. Verify it appears in the component list, and note its full path (e.g. `my_project.lib.my_component.MyComponent`) for future scaffolding:
+This creates the class file and registers it. Verify it appears in the component list, and note its full path (e.g. `my_project.components.my_component.MyComponent`) for future scaffolding:
 
 ```bash
 dg list components
@@ -84,6 +84,8 @@ See [Designing Component Integrations](./designing-component-integrations.md#pat
 ## Expensive Operations
 
 If building definitions requires expensive work — querying a database, hitting an API, cloning a repo, compiling artifacts — ALWAYS use [StateBackedComponent](./state-backed/creating.md). It separates state-fetching from definition-building so that code server loads remain efficient.
+
+If the external system already has a [Dagster integration](../integrations/INDEX.md), prefer [subclassing](./subclassing-components.md) the existing component over building from scratch.
 
 ```python
 # Use StateBackedComponent instead of Component when external state is involved

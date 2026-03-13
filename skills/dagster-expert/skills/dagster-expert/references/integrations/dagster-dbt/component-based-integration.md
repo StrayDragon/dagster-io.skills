@@ -99,7 +99,7 @@ class CustomDbtComponent(DbtProjectComponent):
 Then use your custom component in `defs.yaml`:
 
 ```yaml
-type: my_project.lib.custom_dbt_component.CustomDbtComponent
+type: my_project.components.custom_dbt_component.CustomDbtComponent
 ```
 
 ### dbt Meta Config

@@ -112,7 +112,7 @@ For every question, identify which reference file(s) are relevant using the inde
 - [Creating Components](./references/components/creating-components.md) — building a new custom component from scratch
 - [Designing Component Integrations](./references/components/designing-component-integrations.md) — designing a component that wraps an external service or tool; custom integrations
 - [Resolved Framework](./references/components/resolved-framework.md) — defining custom YAML schema types using Resolver, Model, or Resolvable
-- [Subclassing Components](./references/components/subclassing-components.md) — extending an existing component via subclassing
+- [Subclassing Components](./references/components/subclassing-components.md) — extending an existing component via subclassing; customize dagster integration component
 - [Template Variables](./references/components/template-variables.md) — using Jinja2 template variables in component YAML (env, dg, context, or custom scopes)
 - [Creating State-Backed Components](./references/components/state-backed/creating.md) — building a component that fetches and caches external state
 - [Using State-Backed Components](./references/components/state-backed/using.md) — managing state-backed components in production, CI/CD, or refreshing state

@@ -7,9 +7,14 @@ triggers:
 
 # Designing Component Integrations
 
-## When to Use This Guide
+## Before You Build: Check for Existing Integrations
 
-This guide applies whenever you need to integrate with an external tool — whether or not a published `dagster-*` library exists. If no library exists, you should **always** create a custom component rather than writing raw `@dg.asset` or `@dg.sensor` definitions. See [Integration Workflow](../integrations/INDEX.md#custom-integration-workflow-no-library-exists) for the scaffolding steps.
+Before designing a new component for an external tool, **always check whether a built-in or community integration already exists** in the [Integrations index](../integrations/INDEX.md). Dagster ships integrations for 50+ tools including Fivetran, dbt, Snowflake, Power BI, Airbyte, Looker, Census, and more.
+
+- **If an integration exists:** Subclass it and override only the methods you need to customize (`get_asset_spec()`, `execute()`, `write_state_to_path()`). See [Subclassing Components](./subclassing-components.md).
+- **If no integration exists:** You should **always** create a custom component rather than writing raw `@dg.asset` or `@dg.sensor` definitions. See [Integration Workflow](../integrations/INDEX.md#custom-integration-workflow-no-library-exists) for the scaffolding steps, then continue with the patterns below.
+
+Building a new component from scratch when an existing integration covers the same external system duplicates tested logic (API clients, state serialization, error handling) and misses future upstream improvements.
 
 ## Three Levels of Integration
 
