@@ -23,8 +23,8 @@ The `dg api` subcommands provide CLI access to Dagster Plus resources. They are 
 - [dg api code-location](./code-location/INDEX.md) — managing code locations in Dagster Plus (add, delete, list, inspect)
 - [dg api deployment](./deployment/INDEX.md) — managing Dagster Plus deployments (create, delete, list, settings)
 - [dg api organization](./organization/INDEX.md) — managing Dagster Plus organization settings and SAML/SSO configuration
-- [dg api run](./run/INDEX.md) — querying runs in Dagster Plus (list, inspect, debug via event logs)
-- [dg api schedule](./schedule/INDEX.md) — listing or inspecting schedules in a Dagster Plus deployment
+- [dg api run](./run/INDEX.md) — run operations, run details, run events, run logs; listing runs, getting run info, fetching run events, compute logs
+- [dg api schedule](./schedule/INDEX.md) — schedule operations, schedule details, schedule ticks; listing schedules, getting schedule info, schedule tick history
 - [dg api secret](./secret/INDEX.md) — listing or inspecting secrets in a Dagster Plus deployment
-- [dg api sensor](./sensor/INDEX.md) — listing or inspecting sensors in a Dagster Plus deployment
+- [dg api sensor](./sensor/INDEX.md) — sensor operations, sensor details, sensor ticks; listing sensors, getting sensor info, sensor tick history
 <!-- END GENERATED INDEX -->
