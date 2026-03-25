@@ -11,7 +11,7 @@ dg launch --assets <selection>
 dg launch --job <job_name>
 ```
 
-See [asset-selection.md](./asset-selection.md) for complete selection syntax.
+See [Asset Selection Syntax](../asset-selection.md) for complete selection syntax.
 
 ## Partitions
 

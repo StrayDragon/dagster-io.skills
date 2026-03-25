@@ -44,15 +44,15 @@ For every question, identify which reference file(s) are relevant using the inde
 
 <!-- BEGIN GENERATED INDEX -->
 
-- [Asset Patterns](./references/assets.md) — defining assets, dependencies, metadata, partitions, or multi-asset definitions
+- [Asset Selection Syntax](./references/asset-selection.md) — filtering assets by tag, group, kind, upstream, or downstream; AssetSelection in Python, UI search bar, or CLI
 - [Environment Variables](./references/env-vars.md) — configuring environment variables across different environments
+- [Asset Patterns](./references/assets/INDEX.md) — defining assets, dependencies, metadata, partitions, or multi-asset definitions
 - [Choosing an Automation Approach](./references/automation/choosing-automation.md) — deciding between schedules, sensors, and declarative automation
 - [Schedules](./references/automation/schedules.md) — time-based automation with cron expressions
 - [Declarative Automation](./references/automation/declarative-automation/INDEX.md) — asset-centric condition-based automation using AutomationCondition
 - [Asset Sensors](./references/automation/sensors/asset-sensors.md) — triggering on asset materialization events
 - [Basic Sensors](./references/automation/sensors/basic-sensors.md) — event-driven automation with file watching or custom polling
 - [Run Status Sensors](./references/automation/sensors/run-status-sensors.md) — reacting to run success, failure, or other status changes
-- [Asset Selection Syntax](./references/cli/asset-selection.md) — filtering assets by tag, group, kind, upstream, or downstream
 - [dg check](./references/cli/check.md) — validating project configuration or definitions
 - [create-dagster](./references/cli/create-dagster.md) — creating a new Dagster project from scratch
 - [dg dev](./references/cli/dev.md) — starting a local Dagster development instance
