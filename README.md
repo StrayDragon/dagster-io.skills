@@ -22,7 +22,7 @@ Install using the
 
 /plugin install dagster-expert@dagster-skills
 
-/dagster-skills:dagster-expert "What's an asset?"
+/dagster-expert "What's an asset?"
 ```
 
 ### Using `npx skills`
