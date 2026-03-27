@@ -10,6 +10,12 @@ description:
 
 ---
 
+**Version Note**: Most patterns here are version-agnostic, but any type syntax you apply must match
+your project's minimum runtime version. Use `versions/python-3.6.md` for 3.6-3.9 compatibility and
+`versions/python-3.10.md` (or newer) for 3.10+.
+
+---
+
 ## When Exceptions ARE Acceptable
 
 Exceptions are ONLY acceptable at:
@@ -24,13 +30,13 @@ Exceptions are ONLY acceptable at:
 # ACCEPTABLE: CLI command error boundary
 @click.command("create")
 @click.pass_obj
-def create(ctx: ErkContext, name: str) -> None:
-    """Create a worktree."""
+def create(ctx: object, name: str) -> None:
+    """Create a resource."""
     try:
-        create_worktree(ctx, name)
+        create_resource(ctx, name)
     except subprocess.CalledProcessError as e:
         click.echo(f"Error: Git command failed: {e.stderr}", err=True)
-        raise SystemExit(1)
+        raise SystemExit(1) from e
 ```
 
 ### 2. Third-Party API Compatibility
@@ -59,6 +65,8 @@ def _get_bigquery_sample(sql_client, table_name):
 Standard library functions with known LBYL alternatives do NOT qualify:
 
 ```python
+from datetime import datetime
+
 # WRONG: int() has LBYL alternative (str.isdigit)
 try:
     port = int(user_input)
@@ -71,20 +79,29 @@ if user_input.lstrip('-+').isdigit():
 else:
     port = 80
 
-# WRONG: datetime.fromisoformat() can be validated first
+# WRONG: datetime parsing can often be validated first
 try:
-    dt = datetime.fromisoformat(timestamp_str)
+    dt = datetime.strptime(timestamp_str, "%Y-%m-%d")
 except ValueError:
     dt = None
 
 # CORRECT: Validate format before parsing
-def _is_iso_format(s: str) -> bool:
-    return len(s) >= 10 and s[4] == "-" and s[7] == "-"
+def _is_yyyy_mm_dd(s: str) -> bool:
+    return (
+        len(s) == 10
+        and s[4] == "-"
+        and s[7] == "-"
+        and s[:4].isdigit()
+        and s[5:7].isdigit()
+        and s[8:10].isdigit()
+    )
 
-if _is_iso_format(timestamp_str):
-    dt = datetime.fromisoformat(timestamp_str)
+if _is_yyyy_mm_dd(timestamp_str):
+    dt = datetime.strptime(timestamp_str, "%Y-%m-%d")
 else:
     dt = None
+
+# Note: Python 3.7+ also provides datetime.fromisoformat(), but Python 3.6 does not.
 ```
 
 ### 3. Adding Context Before Re-raising

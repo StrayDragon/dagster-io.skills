@@ -6,6 +6,13 @@
 This document contains the core Python coding standards that apply to 80%+ of Python code. These
 principles are loaded with every skill invocation.
 
+## Version Note
+
+These standards are mostly version-agnostic, but **the allowed type syntax and some stdlib APIs
+depend on the minimum runtime Python version for the code you are editing** (see `SKILL.md`
+version detection). When you must support Python 3.6-3.9, translate type syntax per
+`versions/python-3.6.md`.
+
 For conditional loading of specialized patterns:
 
 - CLI development -> Load `cli-patterns.md`
@@ -83,42 +90,65 @@ Exceptions are ONLY acceptable at:
 **Default: Let exceptions bubble up**
 
 For detailed exception handling patterns including B904 chaining, third-party API examples, and
-anti-patterns, see `references/exception-handling.md`.
+anti-patterns, see `references/advanced/exception-handling.md`.
 
 ---
 
 ## Path Operations
 
-### The Golden Rule
+### Core Rule
 
-**ALWAYS check `.exists()` BEFORE `.resolve()` or `.is_relative_to()`**
+**Avoid exceptions when comparing paths. Prefer boolean checks.**
 
-### Why This Matters
-
-- `.resolve()` raises `OSError` for non-existent paths
-- `.is_relative_to()` raises `ValueError` for invalid comparisons
-- Checking `.exists()` first avoids exceptions entirely (LBYL!)
+- Prefer `Path.is_relative_to()` (Python 3.9+) over `Path.relative_to()` + `try/except`
+- For Python 3.6-3.8, emulate `is_relative_to()` via `base == path or base in path.parents`
+- Use `resolve(strict=True)` only when you truly require existence; it will raise if missing
 
 ### Correct Patterns
+
+**Python 3.9+**
 
 ```python
 from pathlib import Path
 
-# CORRECT: Check exists first
 for wt_path in worktree_paths:
-    if wt_path.exists():
-        wt_path_resolved = wt_path.resolve()
-        if current_dir.is_relative_to(wt_path_resolved):
-            current_worktree = wt_path_resolved
-            break
+    if not wt_path.exists():
+        continue
 
-# WRONG: Using exceptions for path validation
-try:
-    wt_path_resolved = wt_path.resolve()
+    wt_path_resolved = wt_path.resolve()  # strict=False (default)
     if current_dir.is_relative_to(wt_path_resolved):
         current_worktree = wt_path_resolved
-except (OSError, ValueError):
-    continue
+        break
+```
+
+**Python 3.6-3.8 compatible**
+
+```python
+from pathlib import Path
+
+for wt_path in worktree_paths:
+    if not wt_path.exists():
+        continue
+
+    wt_path_resolved = wt_path.resolve()
+    if wt_path_resolved == current_dir or wt_path_resolved in current_dir.parents:
+        current_worktree = wt_path_resolved
+        break
+```
+
+### Avoid (Exception-as-Control-Flow)
+
+```python
+from pathlib import Path
+
+for wt_path in worktree_paths:
+    try:
+        wt_path_resolved = wt_path.resolve(strict=True)
+        current_dir.relative_to(wt_path_resolved)  # Raises ValueError if not relative
+        current_worktree = wt_path_resolved
+        break
+    except (FileNotFoundError, ValueError):
+        continue
 ```
 
 ### Pathlib Best Practices
@@ -165,13 +195,13 @@ content = path.read_text()  # Platform-dependent!
 import json
 import click
 from pathlib import Path
-from erk.config import load_config
+from myapp.config import load_config
 
 def my_function() -> None:
     data = json.loads(content)
 
 # CORRECT: Absolute import
-from erk.config import load_config
+from myapp.config import load_config
 
 # WRONG: Relative import
 from .config import load_config
@@ -337,9 +367,9 @@ Benefits:
 
 For detailed guidance on specialized topics:
 
-- **Exception chaining (B904)**: `references/exception-handling.md`
-- **ABC vs Protocol**: `references/interfaces.md`
-- **typing.cast() assertions**: `references/typing-advanced.md`
+- **Exception chaining (B904)**: `references/advanced/exception-handling.md`
+- **ABC vs Protocol**: `references/advanced/interfaces.md`
+- **typing.cast() assertions**: `references/advanced/typing-advanced.md`
 - **Import-time side effects, @cache**: `references/module-design.md`
-- **Default parameters, keyword-only args**: `references/api-design.md`
+- **Default parameters, keyword-only args**: `references/advanced/api-design.md`
 - **All decision checklists**: `references/checklists.md`

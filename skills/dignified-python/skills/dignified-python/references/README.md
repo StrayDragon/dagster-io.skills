@@ -6,14 +6,14 @@ Production-quality Python coding standards for writing clean, maintainable, mode
 
 ### Core Standards
 
-- **[core-standards.md](./core-standards.md)** - Essential Python standards (always apply)
+- **[dignified-python-core.md](../dignified-python-core.md)** - Essential Python standards (always apply)
   - Modern type syntax (list[str], str | None)
   - LBYL exception handling patterns
   - Pathlib operations
   - Absolute imports
   - Error boundaries
 
-- **[cli-patterns.md](./cli-patterns.md)** - Command-line interface patterns
+- **[cli-patterns.md](../cli-patterns.md)** - Command-line interface patterns
   - Click usage patterns
   - Argparse best practices
   - CLI error handling
@@ -21,25 +21,30 @@ Production-quality Python coding standards for writing clean, maintainable, mode
 
 ### Version-Specific Features (`versions/`)
 
-- **[python-3.10.md](./versions/python-3.10.md)** - Python 3.10+ features
+- **[python-3.6.md](../versions/python-3.6.md)** - Python 3.6-3.9 compatibility baseline
+  - typing.Union / Optional / List / Dict syntax
+  - String forward references (no future annotations)
+  - typing-extensions (max 4.1.1)
+
+- **[python-3.10.md](../versions/python-3.10.md)** - Python 3.10+ features
   - Structural pattern matching (match/case)
   - Parenthesized context managers
   - Better error messages
   - Type union operator (X | Y)
 
-- **[python-3.11.md](./versions/python-3.11.md)** - Python 3.11+ features
+- **[python-3.11.md](../versions/python-3.11.md)** - Python 3.11+ features
   - Exception groups (ExceptionGroup)
   - except\* syntax
   - Self type
   - Variadic generics
 
-- **[python-3.12.md](./versions/python-3.12.md)** - Python 3.12+ features
+- **[python-3.12.md](../versions/python-3.12.md)** - Python 3.12+ features
   - Type parameter syntax (Generic[T])
   - Override decorator
   - Per-interpreter GIL
   - f-string improvements
 
-- **[python-3.13.md](./versions/python-3.13.md)** - Python 3.13+ features
+- **[python-3.13.md](../versions/python-3.13.md)** - Python 3.13+ features
   - Experimental free-threading
   - JIT compilation
   - Improved error messages
@@ -69,13 +74,14 @@ Production-quality Python coding standards for writing clean, maintainable, mode
   - Function signatures
   - Parameter complexity
   - Code organization
-  - Production patterns from Dagster Labs
+  - Production-tested patterns
 
 ## Philosophy
 
 ### Core Principles
 
-**Modern Type Syntax**: Use Python 3.10+ type syntax everywhere
+**Modern Type Syntax**: Use Python 3.10+ type syntax when the target runtime is 3.10+. For
+3.6-3.9 compatibility, follow `versions/python-3.6.md`.
 
 ```python
 # Good (modern)
@@ -135,6 +141,8 @@ from ..shared import helper
 
 ### Type Annotations
 
+**Python 3.10+ (modern syntax)**
+
 ```python
 # Basic types
 def greet(name: str) -> str:
@@ -150,6 +158,24 @@ def find(query: str) -> str | None:
 
 # Multiple types
 def parse(value: str | int | float) -> float:
+    pass
+```
+
+**Python 3.6-3.9 compatible**
+
+```python
+from typing import Dict, List, Optional, Tuple, Union
+
+def greet(name: str) -> str:
+    return "Hello, %s" % (name,)
+
+def process(items: List[str], mapping: Dict[str, int]) -> Tuple[str, int]:
+    pass
+
+def find(query: str) -> Optional[str]:
+    pass
+
+def parse(value: Union[str, int, float]) -> float:
     pass
 ```
 
@@ -219,18 +245,23 @@ if __name__ == "__main__":
 
 ## Version Detection
 
-**Automatic version detection** determines which Python version features are available:
+**Version detection** determines which Python version features are available:
 
-1. Check `pyproject.toml` for `requires-python` field
-2. Check `setup.py`/`setup.cfg` for `python_requires`
-3. Check `.python-version` file
+1. Prefer the closest `pyproject.toml` (walk up from the file you're editing) and read
+   `requires-python`
+2. Otherwise, use the closest `setup.py` / `setup.cfg` and read `python_requires`
+3. Otherwise, check `.python-version`
 4. Default to Python 3.12 if not specified
 
 Based on detected version, appropriate version-specific features are recommended.
 
+**Multi-version repositories:** Some repos run tooling on 3.10+ but keep a core library compatible
+with 3.6. In that case, the *minimum supported runtime version for the code you're editing*
+controls the allowed syntax. Use `versions/python-3.6.md` for 3.6-3.9 compatibility zones.
+
 ## Navigation Tips
 
-- **Start with core-standards.md** for essential patterns that apply to all code
+- **Start with dignified-python-core.md** for essential patterns that apply to all code
 - **Check version-specific docs** based on your project's Python version
 - **Reference advanced topics** when dealing with specialized patterns
 - **Use cli-patterns.md** when building command-line tools
@@ -239,8 +270,9 @@ Based on detected version, appropriate version-specific features are recommended
 
 | Situation                  | Reference                      |
 | -------------------------- | ------------------------------ |
-| Writing any Python code    | core-standards.md              |
+| Writing any Python code    | dignified-python-core.md        |
 | Building a CLI tool        | cli-patterns.md                |
+| Supporting Python 3.6-3.9  | versions/python-3.6.md         |
 | Using Python 3.10 features | versions/python-3.10.md        |
 | Using Python 3.11 features | versions/python-3.11.md        |
 | Using Python 3.12 features | versions/python-3.12.md        |
@@ -250,36 +282,9 @@ Based on detected version, appropriate version-specific features are recommended
 | Complex type hints         | advanced/typing-advanced.md    |
 | API design decisions       | advanced/api-design.md         |
 
-## Related Skills
-
-- **`/dagster-best-practices`** - Dagster-specific patterns (not general Python)
-- **`/dg`** - Dagster CLI operations
-- **`/dagster-expert`** - Dagster expertise including integrations
-
-**Important**: `/dignified-python` is for **general Python standards**, not Dagster-specific
-patterns. For Dagster patterns, use `/dagster-best-practices`.
-
-## Cross-Skill Usage
-
-Users invoke `/dignified-python` when they need Python code quality guidance, regardless of whether
-it's for a Dagster project or any other Python project.
-
-**Workflow:**
-
-```
-User: "Is this good Python code?"
-→ /dignified-python (check core-standards.md)
-→ Apply modern type syntax, LBYL, pathlib patterns
-→ Check version-specific features based on project
-
-User: "How should I structure my Dagster assets?"
-→ /dagster-best-practices (NOT dignified-python)
-→ Learn asset patterns, dependencies, partitions
-```
-
 ## Production Patterns
 
-These standards are based on production-tested patterns from Dagster Labs:
+These standards reflect production-tested patterns from real-world Python codebases:
 
 - ✅ **Modern type syntax** - Improves IDE support and type checking
 - ✅ **LBYL patterns** - More explicit and easier to debug than EAFP
@@ -298,22 +303,8 @@ Each reference document follows a consistent structure:
 5. **Real-World Examples** - Production code samples
 6. **Related Topics** - Cross-references
 
-## Self-Selecting Usage
+## Scope
 
-Users only invoke `/dignified-python` when they want Python standards guidance. The skill
-description makes it clear it's for general Python quality, not Dagster-specific patterns, so users
-naturally select it when appropriate.
-
-**Users will invoke this when they want:**
-
-- Code review and quality improvements
-- Modern Python patterns
-- Type annotation guidance
-- Exception handling best practices
-- CLI implementation patterns
-
-**Users will NOT invoke this when they want:**
-
-- Dagster-specific patterns (they'll use `/dagster-best-practices`)
-- Creating Dagster projects (they'll use `/dg`)
-- Finding integrations (they'll use `/dagster-expert`)
+This reference is intentionally framework-agnostic: it focuses on clean, maintainable, typed Python
+patterns that apply to most production codebases. For framework-specific conventions, consult the
+appropriate framework documentation or a dedicated skill for that ecosystem.

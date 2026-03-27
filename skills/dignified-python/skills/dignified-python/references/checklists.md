@@ -25,8 +25,10 @@ description: All decision checklists consolidated for final review before commit
 
 ## Before Path Operations
 
-- [ ] Did I check `.exists()` before `.resolve()`?
-- [ ] Did I check `.exists()` before `.is_relative_to()`?
+- [ ] Do I actually need `resolve(strict=True)`? If yes, did I check `.exists()` first?
+- [ ] Am I checking "is under directory" without exceptions?
+  - Python 3.9+: use `.is_relative_to(base)`
+  - Python 3.6-3.8: use `base == path or base in path.parents` (avoid `try/except` + `.relative_to()`)
 - [ ] Am I using `pathlib.Path`, not `os.path`?
 - [ ] Did I specify `encoding="utf-8"`?
 
@@ -51,7 +53,7 @@ description: All decision checklists consolidated for final review before commit
 - [ ] Is this a minimal interface (1-2 methods)? -> Protocol may be simpler
 - [ ] Do I need shared method implementations? -> Use ABC
 
-**Default for erk internal code: ABC. Default for external library facades: Protocol.**
+**Default for internal code you control: ABC. Default for third-party boundaries: Protocol.**
 
 ---
 

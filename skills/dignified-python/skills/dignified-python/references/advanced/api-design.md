@@ -10,6 +10,15 @@ description:
 
 ---
 
+**Version Note**: Examples in this document default to Python 3.10+ type syntax. If you are editing
+Python 3.6-3.9 compatible code, apply the same design rules but translate type syntax per
+`versions/python-3.6.md` (e.g., `dict[str, str]` → `Dict[str, str]`, `X | None` → `Optional[X]`).
+
+Some code blocks below are illustrative fragments and may omit app-specific stubs. For a
+copy-paste runnable example, see **Copy-Paste Runnable Demo (Python 3.6+)** at the end.
+
+---
+
 ## Default Parameter Values Are Dangerous
 
 > **Scope:** This rule applies to **function definitions** (`def foo(bar: bool = False)`), NOT to
@@ -49,12 +58,12 @@ content = process_file(legacy_latin1_file, encoding="latin-1")
 
 ```python
 # If every call site uses the default...
-activate_worktree(ctx, repo, path, script, "up", preserve_relative_path=True)  # Always True
-activate_worktree(ctx, repo, path, script, "down", preserve_relative_path=True)  # Always True
+sync_repo(repo_path, mode="up", preserve_relative_paths=True)  # Always True
+sync_repo(repo_path, mode="down", preserve_relative_paths=True)  # Always True
 
 # CORRECT: Remove the parameter entirely
-def activate_worktree(ctx, repo, path, script, command_name) -> None:
-    # Always preserve relative path - it's just the behavior
+def sync_repo(repo_path: Path, mode: str) -> None:
+    # Always preserve relative paths - it's just the behavior
     ...
 ```
 
@@ -81,6 +90,8 @@ def activate_worktree(ctx, repo, path, script, command_name) -> None:
 
 Use the `*` separator after the first positional parameter to enforce keyword-only at the language
 level. This improves call-site readability by forcing explicit parameter names.
+
+**Python 3.10+**
 
 ```python
 # CORRECT: Keyword-only after first param
@@ -117,6 +128,41 @@ def fetch_data(
 response = fetch_data(api_url, 30.0, 3, {"Accept": "application/json"}, token)
 ```
 
+**Python 3.6-3.9 compatible**
+
+```python
+from typing import Dict
+
+def fetch_data(
+    url,
+    *,
+    timeout: float,
+    retries: int,
+    headers: Dict[str, str],
+    auth_token: str,
+) -> Response:
+    ...
+
+response = fetch_data(
+    api_url,
+    timeout=30.0,
+    retries=3,
+    headers={"Accept": "application/json"},
+    auth_token=token,
+)
+
+def fetch_data(
+    url,
+    timeout: float,
+    retries: int,
+    headers: Dict[str, str],
+    auth_token: str,
+) -> Response:
+    ...
+
+response = fetch_data(api_url, 30.0, 3, {"Accept": "application/json"}, token)
+```
+
 **Exceptions:**
 
 1. **`self`** - Always positional (Python requirement)
@@ -126,14 +172,14 @@ response = fetch_data(api_url, 30.0, 3, {"Accept": "application/json"}, token)
 
 ```python
 # CORRECT: ctx stays positional, rest are keyword-only
-def create_worktree(
-    ctx: ErkContext,
+def create_project(
+    ctx: object,
     *,
-    branch_name: str,
-    base_branch: str,
+    name: str,
+    template: str,
     path: Path,
-    checkout: bool,
-) -> WorktreeInfo:
+    init_git: bool,
+) -> "ProjectInfo":
     ...
 ```
 
@@ -169,6 +215,8 @@ future = executor.submit(
 Fakes should mirror production interfaces. Adding test-only configuration knobs that never get used
 creates dead code and false complexity.
 
+**Python 3.10+**
+
 ```python
 # WRONG: Test-only parameter that's never used in production
 class FakeGitHub:
@@ -184,6 +232,27 @@ class FakeGitHub:
     def __init__(
         self,
         prs: dict[str, PullRequestInfo] | None = None,
+    ) -> None:
+        ...
+```
+
+**Python 3.6-3.9 compatible**
+
+```python
+from typing import Dict, Optional
+
+class FakeGitHub:
+    def __init__(
+        self,
+        prs: Optional[Dict[str, "PullRequestInfo"]] = None,
+        rate_limited: bool = False,
+    ) -> None:
+        self._rate_limited = rate_limited
+
+class FakeGitHub:
+    def __init__(
+        self,
+        prs: Optional[Dict[str, "PullRequestInfo"]] = None,
     ) -> None:
         ...
 ```
@@ -228,3 +297,44 @@ Before adding a function with 5+ parameters:
 - [ ] If using ThreadPoolExecutor.submit(), am I using a lambda wrapper?
 
 **Default: All parameters after the first should be keyword-only**
+
+---
+
+## Copy-Paste Runnable Demo (Python 3.6+)
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+from typing import List
+
+def dangerous_default(x: int, history: List[int] = []) -> List[int]:
+    # Mutable defaults are the classic footgun: the same list is shared across calls.
+    history.append(x)
+    return history
+
+def fetch_data(
+    url: str,
+    *,
+    timeout: float,
+    retries: int,
+) -> str:
+    # Demo stub (no network)
+    return "url=%s timeout=%s retries=%s" % (url, timeout, retries)
+
+if __name__ == "__main__":
+    print(dangerous_default(1))
+    print(dangerous_default(2))  # Surprise: [1, 2]
+
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        # WRONG: submit() passes args positionally -> TypeError for keyword-only params
+        bad_future = executor.submit(fetch_data, "https://example.com", 1.0, 3)
+        try:
+            bad_future.result()
+        except TypeError as e:
+            print("expected TypeError:", e)
+
+        # CORRECT: wrap in lambda to use keywords
+        ok_future = executor.submit(
+            lambda: fetch_data("https://example.com", timeout=1.0, retries=3)
+        )
+        print(ok_future.result())
+```

@@ -4,7 +4,16 @@ description: Import-time side effects, @cache for deferred computation, module-l
 
 # Module Design Reference
 
-**Read when**: Creating new modules, adding module-level code, using @cache decorator
+**Read when**: Creating new modules, adding module-level code, using a caching decorator (@cache / @lru_cache)
+
+---
+
+**Version Note**: Examples in this document default to Python 3.10+ type syntax. If you are editing
+Python 3.6-3.9 compatible code, apply the same rules but translate type syntax per
+`versions/python-3.6.md` (e.g., `X | None` → `Optional[X]`).
+
+Some code blocks below are illustrative fragments and may omit app-specific stubs. For a
+copy-paste runnable example, see **Copy-Paste Runnable Demo (Python 3.6+)**.
 
 ---
 
@@ -26,10 +35,13 @@ Module-level code runs when the module is imported. Side effects at import time 
 ## Common Anti-Patterns
 
 ```python
-# WRONG: Path computed at import time
-SESSION_ID_FILE = Path(".erk/scratch/current-session-id")
+from pathlib import Path
+from typing import Optional
 
-def get_session_id() -> str | None:
+# WRONG: Path computed at import time
+SESSION_ID_FILE = Path(".cache/myapp/current-session-id")
+
+def get_session_id() -> Optional[str]:
     if SESSION_ID_FILE.exists():
         return SESSION_ID_FILE.read_text(encoding="utf-8")
     return None
@@ -45,16 +57,19 @@ DB_CLIENT = DatabaseClient(os.environ["DB_URL"])  # Side effect at import!
 
 ## Correct Patterns
 
-**Use `@cache` for deferred computation:**
+**Use a caching decorator for deferred computation:**
+
+**Python 3.10+** (`functools.cache`)
 
 ```python
 from functools import cache
+from pathlib import Path
 
 # CORRECT: Defer computation until first call
 @cache
 def _session_id_file_path() -> Path:
     """Return path to session ID file (cached after first call)."""
-    return Path(".erk/scratch/current-session-id")
+    return Path(".cache/myapp/current-session-id")
 
 def get_session_id() -> str | None:
     session_file = _session_id_file_path()
@@ -63,9 +78,31 @@ def get_session_id() -> str | None:
     return None
 ```
 
-**Use functions for resources:**
+**Python 3.6-3.9 compatible** (`functools.lru_cache`)
 
 ```python
+from functools import lru_cache
+from pathlib import Path
+from typing import Optional
+
+@lru_cache(maxsize=None)
+def _session_id_file_path() -> Path:
+    return Path(".cache/myapp/current-session-id")
+
+def get_session_id() -> Optional[str]:
+    session_file = _session_id_file_path()
+    if session_file.exists():
+        return session_file.read_text(encoding="utf-8")
+    return None
+```
+
+**Use functions for resources:**
+
+**Python 3.10+**
+
+```python
+from functools import cache
+
 # CORRECT: Defer resource creation to function call
 @cache
 def get_config() -> Config:
@@ -78,6 +115,63 @@ def get_db_client() -> DatabaseClient:
     return DatabaseClient(os.environ["DB_URL"])
 ```
 
+**Python 3.6-3.9 compatible**
+
+```python
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def get_config() -> "Config":
+    return load_config()
+
+@lru_cache(maxsize=None)
+def get_db_client() -> "DatabaseClient":
+    return DatabaseClient(os.environ["DB_URL"])
+```
+
+### Copy-Paste Runnable Demo (Python 3.6+)
+
+This example avoids import-time I/O and defers work until first call. It runs on Python 3.6+ as-is
+(and you can modernize syntax per `versions/python-3.10.md` when your runtime allows it).
+
+```python
+import os
+from functools import lru_cache
+from pathlib import Path
+from typing import Any, Dict, Optional
+
+Config = Dict[str, Any]
+
+def load_config() -> Config:
+    return {"env": os.environ.get("ENV", "dev")}
+
+class DatabaseClient:
+    def __init__(self, url: str) -> None:
+        self.url = url
+
+@lru_cache(maxsize=None)
+def _session_id_file_path() -> Path:
+    return Path(".cache/myapp/current-session-id")
+
+def get_session_id() -> Optional[str]:
+    session_file = _session_id_file_path()
+    if session_file.exists():
+        return session_file.read_text(encoding="utf-8")
+    return None
+
+@lru_cache(maxsize=None)
+def get_config() -> Config:
+    return load_config()
+
+@lru_cache(maxsize=None)
+def get_db_client() -> DatabaseClient:
+    return DatabaseClient(os.environ.get("DB_URL", "postgres://localhost"))
+
+if __name__ == "__main__":
+    print(get_session_id())
+    print(get_config()["env"])
+    print(get_db_client().url)
+```
 ---
 
 ## When Module-Level Constants ARE Acceptable
@@ -199,7 +293,8 @@ Before writing module-level code:
 - [ ] Could this fail or raise exceptions?
 - [ ] Would tests need to mock this value?
 
-If any answer is "yes", wrap in a `@cache`-decorated function instead.
+If any answer is "yes", wrap in a cached function instead (`@cache` on 3.10+, or
+`@lru_cache(maxsize=None)` for 3.6-3.9 compatibility).
 
 Before inline imports:
 

@@ -8,6 +8,15 @@ description: Advanced typing patterns including cast() with assertions, Literal 
 
 ---
 
+**Version Note**: Examples in this document default to Python 3.10+ type syntax. If you are editing
+Python 3.6-3.9 compatible code, apply the same rules but translate type syntax per
+`versions/python-3.6.md` (e.g., `dict[str, Any]` → `Dict[str, Any]`).
+
+Some code blocks below are illustrative fragments and may omit app-specific stubs. For a
+copy-paste runnable example, see **Copy-Paste Runnable Demo (Python 3.6+)** at the end.
+
+---
+
 ## Using `typing.cast()`
 
 ### Core Rule
@@ -19,6 +28,8 @@ no runtime verification. If your assumption is wrong, you'll get silent misbehav
 clear error.
 
 ### Required Pattern
+
+**Python 3.10+**
 
 ```python
 from collections.abc import MutableMapping
@@ -33,11 +44,34 @@ assert hasattr(obj, '__setitem__'), f"Expected subscriptable, got {type(obj)}"
 cast(dict[str, Any], obj)["key"] = value
 ```
 
+**Python 3.6-3.9 compatible**
+
+```python
+from collections.abc import MutableMapping
+from typing import Any, Dict, cast
+
+assert isinstance(doc, MutableMapping), f"Expected MutableMapping, got {type(doc)}"
+cast(Dict[str, Any], doc)["key"] = value
+
+assert hasattr(obj, "__setitem__"), f"Expected subscriptable, got {type(obj)}"
+cast(Dict[str, Any], obj)["key"] = value
+```
+
 ### Anti-Pattern
+
+**Python 3.10+**
 
 ```python
 # WRONG: Cast without runtime verification
 cast(dict[str, Any], doc)["key"] = value  # If doc isn't a dict-like, silent failure
+```
+
+**Python 3.6-3.9 compatible**
+
+```python
+from typing import Any, Dict, cast
+
+cast(Dict[str, Any], doc)["key"] = value
 ```
 
 ### When to Skip Runtime Verification
@@ -114,6 +148,8 @@ The rule is: kebab-case by default, external convention when modeling external A
 
 ### Pattern
 
+**Python 3.10+**
+
 ```python
 from dataclasses import dataclass
 from typing import Literal
@@ -139,6 +175,30 @@ def check_state() -> list[tuple[str, str]]:
     return issues
 ```
 
+**Python 3.6-3.9 compatible**
+
+```python
+from typing import List, NamedTuple, Tuple
+from typing_extensions import Literal
+
+IssueCode = Literal["orphan-state", "orphan-dir", "missing-branch"]
+
+class Issue(NamedTuple):
+    code: IssueCode
+    message: str
+
+def check_state() -> List[Issue]:
+    issues: List[Issue] = []
+    if problem_detected:
+        issues.append(Issue(code="orphan-state", message="description"))
+    return issues
+
+def check_state() -> List[Tuple[str, str]]:
+    issues: List[Tuple[str, str]] = []
+    issues.append(("orphen-state", "desc"))
+    return issues
+```
+
 ### When to Use Literal
 
 - Error/issue codes
@@ -156,3 +216,39 @@ Before using a bare `str` type, ask:
 - Would a typo in this string cause a bug?
 
 If any answer is "yes", use `Literal` instead.
+
+---
+
+## Copy-Paste Runnable Demo (Python 3.6+)
+
+```python
+from collections.abc import MutableMapping
+from typing import Any, Dict, List, NamedTuple, cast
+
+try:
+    from typing import Literal  # Python 3.8+
+except ImportError:  # Python 3.6-3.7
+    from typing_extensions import Literal
+
+def demo_cast(doc: object) -> Dict[str, Any]:
+    assert isinstance(doc, MutableMapping), "Expected MutableMapping"
+    typed = cast(Dict[str, Any], doc)
+    typed["key"] = "value"
+    return typed
+
+IssueCode = Literal["orphan-state", "orphan-dir", "missing-branch"]
+
+class Issue(NamedTuple):
+    code: IssueCode
+    message: str
+
+def check_state(problem_detected: bool) -> List[Issue]:
+    issues: List[Issue] = []
+    if problem_detected:
+        issues.append(Issue(code="orphan-state", message="example"))
+    return issues
+
+if __name__ == "__main__":
+    print(demo_cast({"existing": 1}))
+    print(check_state(problem_detected=True))
+```

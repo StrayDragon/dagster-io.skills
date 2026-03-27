@@ -3,6 +3,17 @@
 
 # CLI Patterns - Click Best Practices
 
+## Version Note
+
+These patterns are largely version-agnostic, but **type syntax MUST match your target runtime for
+the code you are editing** (not necessarily your dev tooling version).
+
+- If the code must run on Python 3.6-3.9, follow `versions/python-3.6.md`.
+- If the code is Python 3.10+, follow `versions/python-3.10.md` (or newer).
+
+Most examples here use `click` (third-party). If your project does not depend on `click`, see the
+stdlib-only `argparse` runnable demo at the end of this document.
+
 ## Core Rules
 
 1. **Use `click.echo()` for output, NEVER `print()`**
@@ -154,3 +165,35 @@ def process(input_file: str, output_dir: str) -> None:
 3. **Exit cleanly**: Use `raise SystemExit(1)` for errors
 4. **User-friendly**: Provide clear messages and confirmations
 5. **Type paths**: Use `click.Path()` for path arguments
+
+---
+
+## Copy-Paste Runnable Demo (stdlib `argparse`, Python 3.6+)
+
+```python
+import argparse
+import sys
+from pathlib import Path
+from typing import List, Optional
+
+def main(argv: Optional[List[str]] = None) -> int:
+    parser = argparse.ArgumentParser(prog="myapp")
+    parser.add_argument("path", help="Path to process")
+    parser.add_argument("--dry-run", action="store_true")
+    args = parser.parse_args(argv)
+
+    path = Path(args.path)
+    if not path.exists():
+        sys.stderr.write("Error: path does not exist: %s\n" % (path,))
+        return 1
+
+    if args.dry_run:
+        sys.stdout.write("DRY RUN: would process %s\n" % (path,))
+        return 0
+
+    sys.stdout.write("Processed %s\n" % (path,))
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
